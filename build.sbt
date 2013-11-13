@@ -20,7 +20,7 @@ libraryDependencies += "commons-httpclient" % "commons-httpclient" % "3.1"
 
 libraryDependencies += "org.apache.commons" % "commons-math" % "2.1"
 
-libraryDependencies += "jdom" % "jdom" % "1.1"
+libraryDependencies += "jdom" % "jdom" % "2.0.5"
 
 dependencyOverrides += "commons-codec" % "commons-codec" % "1.3"
 
