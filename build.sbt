@@ -16,7 +16,7 @@ libraryDependencies += "org.neo4j" % "neo4j" % "1.9.3"
 
 libraryDependencies += "com.amazonaws" % "aws-java-sdk" % "1.6.5"
 
-libraryDependencies += "org.apache.httpcomponents" % "httpclient" % "4.2"
+libraryDependencies += "org.apache.httpcomponents" % "httpclient" % "4.3"
 
 libraryDependencies += "org.apache.commons" % "commons-math" % "2.1"
 
