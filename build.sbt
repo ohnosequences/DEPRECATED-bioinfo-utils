@@ -16,11 +16,11 @@ libraryDependencies += "org.neo4j" % "neo4j" % "1.9.3"
 
 libraryDependencies += "com.amazonaws" % "aws-java-sdk" % "1.6.5"
 
-libraryDependencies += "commons-httpclient" % "commons-httpclient" % "3.1"
+libraryDependencies += "org.apache.httpcomponents" % "httpclient" % "4.2"
 
 libraryDependencies += "org.apache.commons" % "commons-math" % "2.1"
 
-libraryDependencies += "jdom" % "jdom" % "2.0.5"
+libraryDependencies += "org.jdom" % "jdom" % "2.0.2"
 
 dependencyOverrides += "commons-codec" % "commons-codec" % "1.3"
 

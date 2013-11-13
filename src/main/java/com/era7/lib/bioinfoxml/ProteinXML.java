@@ -10,9 +10,9 @@ import com.era7.lib.era7xmlapi.model.XMLElement;
 import com.era7.lib.era7xmlapi.model.XMLElementException;
 import java.util.ArrayList;
 import java.util.List;
-import org.jdom.Element;
-import org.jdom.JDOMException;
-import org.jdom.xpath.XPath;
+import org.jdom2.Element;
+import org.jdom2.JDOMException;
+import org.jdom2.xpath.XPath;
 
 /**
  *

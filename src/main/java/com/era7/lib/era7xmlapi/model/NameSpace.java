@@ -1,6 +1,6 @@
 package com.era7.lib.era7xmlapi.model;
 
-import org.jdom.Namespace;
+import org.jdom2.Namespace;
 
 import com.era7.lib.era7xmlapi.interfaces.INameSpace;
 
@@ -30,7 +30,7 @@ public class NameSpace implements INameSpace {
 		nameSpace = ns;
 	}
 	
-	public org.jdom.Namespace getNamespace(){
+	public org.jdom2.Namespace getNamespace(){
 		return this.nameSpace;
 	}
 	
@@ -55,7 +55,7 @@ public class NameSpace implements INameSpace {
 	}
 	@Override
 	public Namespace asJdomNamespace() {
-		return org.jdom.Namespace.getNamespace(nameSpace.getPrefix(), nameSpace.getURI());
+		return org.jdom2.Namespace.getNamespace(nameSpace.getPrefix(), nameSpace.getURI());
 	}
 
 }

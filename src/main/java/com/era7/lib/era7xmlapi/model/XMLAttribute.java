@@ -1,21 +1,21 @@
 package com.era7.lib.era7xmlapi.model;
 
 
-import org.jdom.Attribute;
-import org.jdom.Namespace;
+import org.jdom2.Attribute;
+import org.jdom2.Namespace;
 
 import com.era7.lib.era7xmlapi.interfaces.IAttribute;
 import com.era7.lib.era7xmlapi.interfaces.INameSpace;
 
 public class XMLAttribute implements IAttribute {
 
-	protected org.jdom.Attribute attribute;
+	protected org.jdom2.Attribute attribute;
 	
 	/**
 	 * 
 	 * @param attr
 	 */
-	public XMLAttribute(org.jdom.Attribute attr){
+	public XMLAttribute(org.jdom2.Attribute attr){
 		this.attribute = attr;
 	}
 	/**
@@ -24,7 +24,7 @@ public class XMLAttribute implements IAttribute {
 	 * @param value Attribute value
 	 */
 	public XMLAttribute(String name, String value){
-		this.attribute = new org.jdom.Attribute(name,value);
+		this.attribute = new org.jdom2.Attribute(name,value);
 	}
 	
 	/**
@@ -34,7 +34,7 @@ public class XMLAttribute implements IAttribute {
 	 * @param ns Namespace
 	 */
 	public XMLAttribute(String name, String value, INameSpace ns){
-		this.attribute = new org.jdom.Attribute(name,value,Namespace.getNamespace(ns.getPrefix(),ns.getUri()));
+		this.attribute = new org.jdom2.Attribute(name,value,Namespace.getNamespace(ns.getPrefix(),ns.getUri()));
 	}
 	
 //	/**
@@ -48,7 +48,7 @@ public class XMLAttribute implements IAttribute {
 //	public XMLAttribute(XmlValue value) throws XMLElementException{
 //		try {
 //			if(value.getNodeType() == XmlValue.ATTRIBUTE_NODE){
-//				this.attribute = new org.jdom.Attribute(value.getNodeName(),
+//				this.attribute = new org.jdom2.Attribute(value.getNodeName(),
 //														value.getNodeValue(),
 //														Namespace.getNamespace(value.getPrefix(), value.getNamespaceURI()));
 //			}else{

@@ -20,7 +20,7 @@ import com.era7.lib.bioinfoxml.pal.PalindromicityResultXML;
 import com.era7.lib.era7xmlapi.model.XMLElement;
 import com.era7.lib.era7xmlapi.model.XMLElementException;
 import com.era7.lib.bioinfoxml.util.Error;
-import org.jdom.Element;
+import org.jdom2.Element;
 
 /**
  *

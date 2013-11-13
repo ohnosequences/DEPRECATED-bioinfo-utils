@@ -7,15 +7,15 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jdom.filter.ElementFilter;
+import org.jdom2.filter.ElementFilter;
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.jdom.Document;
-import org.jdom.Element;
-import org.jdom.JDOMException;
-import org.jdom.Namespace;
-import org.jdom.input.SAXBuilder;
-import org.jdom.output.XMLOutputter;
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.JDOMException;
+import org.jdom2.Namespace;
+import org.jdom2.input.SAXBuilder;
+import org.jdom2.output.XMLOutputter;
 import org.xml.sax.InputSource;
 
 import com.era7.lib.era7xmlapi.interfaces.IElement;
@@ -123,7 +123,7 @@ public class XMLElement implements IElement {
     public List<XMLAttribute> getAttributes() {
         List<XMLAttribute> list = new ArrayList<XMLAttribute>();
         for (Object attr : this.root.getAttributes()) {
-            XMLAttribute temp = new XMLAttribute((org.jdom.Attribute) (attr));
+            XMLAttribute temp = new XMLAttribute((org.jdom2.Attribute) (attr));
             list.add(temp);
         }
         return list;
@@ -133,7 +133,7 @@ public class XMLElement implements IElement {
     public List<XMLElement> getChildren() {
         List<XMLElement> list = new ArrayList<XMLElement>();
         for (Object elem : this.root.getChildren()) {
-            XMLElement temp = new XMLElement((org.jdom.Element) (elem));
+            XMLElement temp = new XMLElement((org.jdom2.Element) (elem));
             list.add(temp);
         }
         return list;
@@ -145,7 +145,7 @@ public class XMLElement implements IElement {
 
         for (Object elem : this.root.getChildren()) {
 
-            org.jdom.Element e = (org.jdom.Element) (elem);
+            org.jdom2.Element e = (org.jdom2.Element) (elem);
             if (e.getNamespacePrefix().equals(ns.getPrefix()) && e.getNamespaceURI().equals(ns.getUri())) {
                 XMLElement temp = new XMLElement(e);
                 list.add(temp);
@@ -162,7 +162,7 @@ public class XMLElement implements IElement {
         ElementFilter filter = new ElementFilter(name);
 
         for (Object elem : this.root.getContent(filter)) {
-            XMLElement temp = new XMLElement((org.jdom.Element) (elem));
+            XMLElement temp = new XMLElement((org.jdom2.Element) (elem));
             list.add(temp);
 
         }
@@ -175,7 +175,7 @@ public class XMLElement implements IElement {
 
         for (Object attr : this.root.getAttributes()) {
 
-            org.jdom.Attribute a = (org.jdom.Attribute) (attr);
+            org.jdom2.Attribute a = (org.jdom2.Attribute) (attr);
             if (a.getName().equals(name)) {
                 XMLAttribute temp = new XMLAttribute(a);
                 list.add(temp);
@@ -191,7 +191,7 @@ public class XMLElement implements IElement {
 
         for (Object attr : this.root.getChildren()) {
 
-            org.jdom.Attribute a = (org.jdom.Attribute) (attr);
+            org.jdom2.Attribute a = (org.jdom2.Attribute) (attr);
             if (a.getNamespacePrefix().equals(ns.getPrefix()) && a.getNamespaceURI().equals(ns.getUri())) {
                 XMLAttribute temp = new XMLAttribute(a);
                 list.add(temp);
@@ -203,9 +203,9 @@ public class XMLElement implements IElement {
 
     @Override
     public void setAttributes(List<XMLAttribute> newValue) {
-        List<org.jdom.Attribute> list = new ArrayList<org.jdom.Attribute>();
+        List<org.jdom2.Attribute> list = new ArrayList<org.jdom2.Attribute>();
         for (XMLAttribute attr : newValue) {
-            list.add(new org.jdom.Attribute(attr.getName(), attr.getText(), attr.getNameSpace().asJdomNamespace()));
+            list.add(new org.jdom2.Attribute(attr.getName(), attr.getText(), attr.getNameSpace().asJdomNamespace()));
         }
         this.root.setAttributes(list);
     }

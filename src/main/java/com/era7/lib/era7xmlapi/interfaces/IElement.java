@@ -22,7 +22,7 @@ public interface IElement extends IXmlThing {
     void addChild(XMLElement element);
     void addChildren(List<XMLElement> list);
     
-    org.jdom.Element asJDomElement();
+    org.jdom2.Element asJDomElement();
 //    XmlValue asXmlvalue() throws Exception;
 	
 }

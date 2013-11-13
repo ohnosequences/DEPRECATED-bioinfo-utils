@@ -8,5 +8,5 @@ public interface INameSpace {
     void setPrefix(String newValue);
     void setUri(String newValue);
 	
-    org.jdom.Namespace asJdomNamespace();
+    org.jdom2.Namespace asJdomNamespace();
 }

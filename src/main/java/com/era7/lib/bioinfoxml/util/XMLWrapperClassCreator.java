@@ -23,7 +23,7 @@ import java.io.FileWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
-import org.jdom.Element;
+import org.jdom2.Element;
 
 /**
  *
@@ -32,7 +32,7 @@ import org.jdom.Element;
 public class XMLWrapperClassCreator {
 
     public static final String NECESSARY_IMPORTS = "import com.era7.lib.era7xmlapi.model.XMLElement;\nimport com.era7.lib.era7xmlapi.model.XMLElementException;"
-            + "\nimport java.util.ArrayList;\nimport java.util.List;\nimport org.jdom.Element;\n\n";
+            + "\nimport java.util.ArrayList;\nimport java.util.List;\nimport org.jdom2.Element;\n\n";
     public static final String VARS_PREFIX = "public static final String ";
     private static final String CLASS_NAME_CONSTRUCTOR_VAR = "lalala";
     private static final String CONSTRUCTORS_STR = "public " + CLASS_NAME_CONSTRUCTOR_VAR + "(){\n"

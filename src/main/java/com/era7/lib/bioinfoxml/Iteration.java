@@ -18,7 +18,7 @@ import com.era7.lib.era7xmlapi.model.XMLElement;
 import com.era7.lib.era7xmlapi.model.XMLElementException;
 import java.util.ArrayList;
 import java.util.List;
-import org.jdom.Element;
+import org.jdom2.Element;
 
 /**
  *

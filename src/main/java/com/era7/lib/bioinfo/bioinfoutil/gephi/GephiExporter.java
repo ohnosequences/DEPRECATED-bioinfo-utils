@@ -21,7 +21,7 @@ import com.era7.lib.bioinfoxml.go.GoTermXML;
 import com.era7.lib.era7xmlapi.model.XMLElementException;
 import java.util.ArrayList;
 import java.util.List;
-import org.jdom.Element;
+import org.jdom2.Element;
 
 /**
  *

@@ -17,9 +17,9 @@ package com.era7.lib.bioinfoxml.go;
 import com.era7.lib.era7xmlapi.model.XMLElement;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import org.jdom.Document;
-import org.jdom.Element;
-import org.jdom.input.SAXBuilder;
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.input.SAXBuilder;
 
 /**
  *

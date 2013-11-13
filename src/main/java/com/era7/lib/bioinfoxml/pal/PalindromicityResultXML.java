@@ -16,7 +16,7 @@ package com.era7.lib.bioinfoxml.pal;
 
 import com.era7.lib.era7xmlapi.model.XMLElement;
 import com.era7.lib.era7xmlapi.model.XMLElementException;
-import org.jdom.Element;
+import org.jdom2.Element;
 
 /**
  *

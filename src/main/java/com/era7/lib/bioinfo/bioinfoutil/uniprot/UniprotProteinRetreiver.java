@@ -8,8 +8,8 @@ import com.era7.lib.bioinfoxml.PredictedGene;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.methods.PostMethod;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.PostMethod;
 
 /**
  *

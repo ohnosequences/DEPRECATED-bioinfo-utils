@@ -16,7 +16,7 @@
 package com.era7.lib.bioinfoxml.go;
 
 import com.era7.lib.era7xmlapi.model.XMLElement;
-import org.jdom.Element;
+import org.jdom2.Element;
 
 /**
  *
