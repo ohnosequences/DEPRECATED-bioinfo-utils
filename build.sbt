@@ -14,7 +14,7 @@ libraryDependencies += "junit" % "junit" % "3.8.1" % "test"
 
 libraryDependencies += "org.neo4j" % "neo4j" % "1.9.3"
 
-libraryDependencies += "com.amazonaws" % "aws-java-sdk" % "1.0.004"
+libraryDependencies += "com.amazonaws" % "aws-java-sdk" % "1.6.5"
 
 libraryDependencies += "commons-httpclient" % "commons-httpclient" % "3.1"
 
