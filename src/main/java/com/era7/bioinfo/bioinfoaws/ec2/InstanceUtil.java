@@ -5,12 +5,14 @@
 
 package com.era7.bioinfo.bioinfoaws.ec2;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.GetMethod;
+import org.apache.http.client.ResponseHandler;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.BasicResponseHandler;
+import org.apache.http.impl.client.DefaultHttpClient;
 
 /**
  *
@@ -20,18 +22,14 @@ public class InstanceUtil {
 
     public static final String METADA_INSTANCE_ID_WEB_SERVICE_URL = "http://169.254.169.254/latest/meta-data/instance-id";
 
-    public static String getRunningInstanceId() throws IOException{
+    public static String getRunningInstanceId() throws ClientProtocolException, IOException {
         String id = "";
 
-        GetMethod getMethod = new GetMethod(METADA_INSTANCE_ID_WEB_SERVICE_URL);
+        HttpGet httpget = new HttpGet(METADA_INSTANCE_ID_WEB_SERVICE_URL);
 
-        HttpClient client = new HttpClient();
-        client.executeMethod(getMethod);
-        InputStream inStream = getMethod.getResponseBodyAsStream();
-
-        BufferedReader reader = new BufferedReader(new InputStreamReader(inStream));
-        id = reader.readLine();
-        reader.close();
+        HttpClient client = new DefaultHttpClient();
+        ResponseHandler<String> responseHandler = new BasicResponseHandler();
+        id = client.execute(httpget, responseHandler);
 
         return id;
     }

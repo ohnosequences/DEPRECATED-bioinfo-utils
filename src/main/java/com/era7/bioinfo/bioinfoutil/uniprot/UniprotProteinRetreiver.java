@@ -5,11 +5,21 @@
 package com.era7.bioinfo.bioinfoutil.uniprot;
 
 import com.era7.bioinfoxml.PredictedGene;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.PostMethod;
+import org.apache.http.client.ResponseHandler;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.BasicResponseHandler;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 
 /**
  *
@@ -27,31 +37,29 @@ public class UniprotProteinRetreiver {
             columnsParameter += ",sequence";
         }
 
-        PostMethod post = new PostMethod(URL_UNIPROT);
-        post.addParameter("query", "accession:" + gene.getAnnotationUniprotId());
-        post.addParameter("format", "tab");
-        post.addParameter("columns", columnsParameter);
+        HttpPost post = new HttpPost(URL_UNIPROT);
+        List<NameValuePair> formparams = new ArrayList<NameValuePair>();
+        formparams.add(new BasicNameValuePair("query", "accession:" + gene.getAnnotationUniprotId()));
+        formparams.add(new BasicNameValuePair("format", "tab"));
+        formparams.add(new BasicNameValuePair("columns", columnsParameter));
+        UrlEncodedFormEntity entity = new UrlEncodedFormEntity(formparams, "UTF-8");
+        post.setEntity(entity);
 
         // execute the POST
         String response = null;
-        HttpClient client = new HttpClient();
+        HttpClient client = new DefaultHttpClient();
         do {
             System.out.println("Performing POST request...");
-            int status = client.executeMethod(post);
-            InputStream inStream = post.getResponseBodyAsStream();
+            
+            ResponseHandler<String> responseHandler = new BasicResponseHandler();
+            String responseSt = client.execute(post, responseHandler);
 
-            BufferedReader reader = new BufferedReader(new InputStreamReader(inStream));
-
-            //la primera linea me la salto que son las cabeceras
-            reader.readLine();
-            response = reader.readLine();
-            if (response == null) {
+            String respNoHeader = responseSt.split("\n")[1];
+            
+            if (respNoHeader.isEmpty()) {
                 System.out.println("There was no response, trying again....");
             }else{
-                String tempLine = null;
-                while((tempLine = reader.readLine()) != null){
-                    response += "\n" + tempLine;
-                }
+                response = respNoHeader;
             }
         } while (response == null);
 
