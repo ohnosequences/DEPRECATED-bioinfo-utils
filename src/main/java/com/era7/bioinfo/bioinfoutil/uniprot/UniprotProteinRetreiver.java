@@ -2,9 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.era7.lib.bioinfo.bioinfoutil.uniprot;
+package com.era7.bioinfo.bioinfoutil.uniprot;
 
-import com.era7.lib.bioinfoxml.PredictedGene;
+import com.era7.bioinfoxml.PredictedGene;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;

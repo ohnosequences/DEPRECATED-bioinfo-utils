@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.era7.lib.era7xmlapi.util;
+package com.era7.era7xmlapi.util;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

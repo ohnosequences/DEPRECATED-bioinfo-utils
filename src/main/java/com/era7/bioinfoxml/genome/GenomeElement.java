@@ -13,13 +13,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.era7.lib.bioinfoxml.genome;
+package com.era7.bioinfoxml.genome;
 
-import com.era7.lib.bioinfoxml.genome.feature.Feature;
-import com.era7.lib.bioinfoxml.pal.PalindromicityResultXML;
-import com.era7.lib.era7xmlapi.model.XMLElement;
-import com.era7.lib.era7xmlapi.model.XMLElementException;
-import com.era7.lib.bioinfoxml.util.Error;
+import com.era7.bioinfoxml.genome.feature.Feature;
+import com.era7.bioinfoxml.pal.PalindromicityResultXML;
+import com.era7.era7xmlapi.model.XMLElement;
+import com.era7.era7xmlapi.model.XMLElementException;
+import com.era7.bioinfoxml.util.Error;
 import org.jdom2.Element;
 
 /**

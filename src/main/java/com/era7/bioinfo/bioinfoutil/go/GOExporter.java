@@ -2,12 +2,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.era7.lib.bioinfo.bioinfoutil.go;
+package com.era7.bioinfo.bioinfoutil.go;
 
-import com.era7.lib.bioinfoxml.go.GoAnnotationXML;
-import com.era7.lib.bioinfoxml.go.GoTermXML;
-import com.era7.lib.bioinfoxml.uniprot.ProteinXML;
-import com.era7.lib.era7xmlapi.model.XMLElementException;
+import com.era7.bioinfoxml.go.GoAnnotationXML;
+import com.era7.bioinfoxml.go.GoTermXML;
+import com.era7.bioinfoxml.uniprot.ProteinXML;
+import com.era7.era7xmlapi.model.XMLElementException;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;

@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package com.era7.lib.bioinfo.bioinfoutil.file;
+package com.era7.bioinfo.bioinfoutil.file;
 
 import java.io.File;
 import java.io.FilenameFilter;

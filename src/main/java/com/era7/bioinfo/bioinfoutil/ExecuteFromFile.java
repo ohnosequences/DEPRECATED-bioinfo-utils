@@ -3,12 +3,12 @@
  * and open the template in the editor.
  */
 
-package com.era7.lib.bioinfo.bioinfoutil;
+package com.era7.bioinfo.bioinfoutil;
 
-import com.era7.lib.bioinfoxml.util.Argument;
-import com.era7.lib.bioinfoxml.util.Arguments;
-import com.era7.lib.bioinfoxml.util.Execution;
-import com.era7.lib.bioinfoxml.util.ScheduledExecutions;
+import com.era7.bioinfoxml.util.Argument;
+import com.era7.bioinfoxml.util.Arguments;
+import com.era7.bioinfoxml.util.Execution;
+import com.era7.bioinfoxml.util.ScheduledExecutions;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;

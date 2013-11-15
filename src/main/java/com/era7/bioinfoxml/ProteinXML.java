@@ -3,11 +3,11 @@
  * and open the template in the editor.
  */
 
-package com.era7.lib.bioinfoxml;
+package com.era7.bioinfoxml;
 
-import com.era7.lib.bioinfoxml.go.GoTermXML;
-import com.era7.lib.era7xmlapi.model.XMLElement;
-import com.era7.lib.era7xmlapi.model.XMLElementException;
+import com.era7.bioinfoxml.go.GoTermXML;
+import com.era7.era7xmlapi.model.XMLElement;
+import com.era7.era7xmlapi.model.XMLElementException;
 import java.util.ArrayList;
 import java.util.List;
 import org.jdom2.Element;

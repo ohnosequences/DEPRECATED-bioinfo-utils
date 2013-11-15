@@ -1,6 +1,6 @@
-package com.era7.lib.era7xmlapi.model;
+package com.era7.era7xmlapi.model;
 
-import com.era7.lib.era7xmlapi.interfaces.IXmlThing;
+import com.era7.era7xmlapi.interfaces.IXmlThing;
 
 public class XMLElementException extends Exception{
 

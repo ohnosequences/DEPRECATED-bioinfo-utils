@@ -1,4 +1,4 @@
-package com.era7.lib.era7xmlapi.model;
+package com.era7.era7xmlapi.model;
 
 import java.io.CharArrayReader;
 import java.io.FileNotFoundException;
@@ -18,8 +18,8 @@ import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.XMLOutputter;
 import org.xml.sax.InputSource;
 
-import com.era7.lib.era7xmlapi.interfaces.IElement;
-import com.era7.lib.era7xmlapi.interfaces.INameSpace;
+import com.era7.era7xmlapi.interfaces.IElement;
+import com.era7.era7xmlapi.interfaces.INameSpace;
 
 public class XMLElement implements IElement {
 

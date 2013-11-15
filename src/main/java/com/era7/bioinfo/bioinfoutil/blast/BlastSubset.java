@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.era7.lib.bioinfo.bioinfoutil.blast;
+package com.era7.bioinfo.bioinfoutil.blast;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

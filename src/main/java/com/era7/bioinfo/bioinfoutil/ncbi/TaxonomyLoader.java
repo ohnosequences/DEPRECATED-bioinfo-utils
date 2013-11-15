@@ -2,9 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.era7.lib.bioinfo.bioinfoutil.ncbi;
+package com.era7.bioinfo.bioinfoutil.ncbi;
 
-import com.era7.lib.bioinfoxml.ncbi.NCBITaxonomyNodeXML;
+import com.era7.bioinfoxml.ncbi.NCBITaxonomyNodeXML;
 import java.io.*;
 import java.util.HashMap;
 

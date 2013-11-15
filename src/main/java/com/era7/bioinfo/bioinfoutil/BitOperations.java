@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package com.era7.lib.bioinfo.bioinfoutil;
+package com.era7.bioinfo.bioinfoutil;
 
 /**
  *

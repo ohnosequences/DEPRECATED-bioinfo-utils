@@ -1,8 +1,8 @@
-package com.era7.lib.bioinfo.bioinfoutil.pal;
+package com.era7.bioinfo.bioinfoutil.pal;
 
-import com.era7.lib.bioinfo.bioinfoutil.BitOperations;
-import com.era7.lib.bioinfo.bioinfoutil.model.PalindromicityResult;
-import com.era7.lib.bioinfoxml.pal.PalindromicityResultXML;
+import com.era7.bioinfo.bioinfoutil.BitOperations;
+import com.era7.bioinfo.bioinfoutil.model.PalindromicityResult;
+import com.era7.bioinfoxml.pal.PalindromicityResultXML;
 
 public class PalindromicityAnalyzer {
 

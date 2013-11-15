@@ -2,17 +2,17 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.era7.lib.bioinfo.bioinfoutil.blast;
+package com.era7.bioinfo.bioinfoutil.blast;
 
-import com.era7.lib.bioinfoxml.BlastOutput;
-import com.era7.lib.bioinfoxml.Iteration;
-import com.era7.lib.bioinfoxml.uniprot.ProteinXML;
-import com.era7.lib.bioinfoxml.ContigXML;
-import com.era7.lib.bioinfoxml.Hit;
-import com.era7.lib.bioinfoxml.Hsp;
-import com.era7.lib.era7xmlapi.model.XMLElement;
-import com.era7.lib.era7xmlapi.model.XMLElementException;
-import com.era7.lib.era7xmlapi.util.XMLUtil;
+import com.era7.bioinfoxml.BlastOutput;
+import com.era7.bioinfoxml.Iteration;
+import com.era7.bioinfoxml.uniprot.ProteinXML;
+import com.era7.bioinfoxml.ContigXML;
+import com.era7.bioinfoxml.Hit;
+import com.era7.bioinfoxml.Hsp;
+import com.era7.era7xmlapi.model.XMLElement;
+import com.era7.era7xmlapi.model.XMLElementException;
+import com.era7.era7xmlapi.util.XMLUtil;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;

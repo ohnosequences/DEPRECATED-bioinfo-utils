@@ -2,13 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.era7.lib.bioinfo.bioinfoutil.gephi;
+package com.era7.bioinfo.bioinfoutil.gephi;
 
-import com.era7.lib.bioinfoxml.gexf.EdgeXML;
-import com.era7.lib.bioinfoxml.gexf.GexfXML;
-import com.era7.lib.bioinfoxml.gexf.GraphXML;
-import com.era7.lib.bioinfoxml.gexf.NodeXML;
-import com.era7.lib.era7xmlapi.model.XMLElement;
+import com.era7.bioinfoxml.gexf.EdgeXML;
+import com.era7.bioinfoxml.gexf.GexfXML;
+import com.era7.bioinfoxml.gexf.GraphXML;
+import com.era7.bioinfoxml.gexf.NodeXML;
+import com.era7.era7xmlapi.model.XMLElement;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;

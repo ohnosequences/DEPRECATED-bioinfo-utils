@@ -1,7 +1,7 @@
-package com.era7.lib.era7xmlapi.interfaces;
+package com.era7.era7xmlapi.interfaces;
 
-import com.era7.lib.era7xmlapi.model.XMLAttribute;
-import com.era7.lib.era7xmlapi.model.XMLElement;
+import com.era7.era7xmlapi.model.XMLAttribute;
+import com.era7.era7xmlapi.model.XMLElement;
 import java.util.List;
 
 public interface IElement extends IXmlThing {

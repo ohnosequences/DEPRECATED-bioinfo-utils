@@ -12,10 +12,10 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
-package com.era7.lib.bioinfoxml.gb;
+package com.era7.bioinfoxml.gb;
 
-import com.era7.lib.era7xmlapi.model.XMLElement;
-import com.era7.lib.era7xmlapi.model.XMLElementException;
+import com.era7.era7xmlapi.model.XMLElement;
+import com.era7.era7xmlapi.model.XMLElementException;
 import org.jdom2.Element;
 
 public class GenBankXML extends XMLElement{

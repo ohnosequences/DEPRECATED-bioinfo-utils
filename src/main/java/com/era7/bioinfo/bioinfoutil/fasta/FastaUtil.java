@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.era7.lib.bioinfo.bioinfoutil.fasta;
+package com.era7.bioinfo.bioinfoutil.fasta;
 
 import java.io.BufferedWriter;
 import java.io.IOException;

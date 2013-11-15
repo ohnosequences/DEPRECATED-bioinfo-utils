@@ -2,23 +2,23 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.era7.lib.bioinfo.bioinfoutil.gephi;
+package com.era7.bioinfo.bioinfoutil.gephi;
 
-import com.era7.lib.bioinfoxml.uniprot.ProteinXML;
-import com.era7.lib.bioinfoxml.gexf.AttValueXML;
-import com.era7.lib.bioinfoxml.gexf.AttValuesXML;
-import com.era7.lib.bioinfoxml.gexf.AttributeXML;
-import com.era7.lib.bioinfoxml.gexf.AttributesXML;
-import com.era7.lib.bioinfoxml.gexf.EdgeXML;
-import com.era7.lib.bioinfoxml.gexf.GexfXML;
-import com.era7.lib.bioinfoxml.gexf.GraphXML;
-import com.era7.lib.bioinfoxml.gexf.NodeXML;
-import com.era7.lib.bioinfoxml.gexf.viz.VizColorXML;
-import com.era7.lib.bioinfoxml.gexf.viz.VizPositionXML;
-import com.era7.lib.bioinfoxml.gexf.viz.VizSizeXML;
-import com.era7.lib.bioinfoxml.go.GoAnnotationXML;
-import com.era7.lib.bioinfoxml.go.GoTermXML;
-import com.era7.lib.era7xmlapi.model.XMLElementException;
+import com.era7.bioinfoxml.uniprot.ProteinXML;
+import com.era7.bioinfoxml.gexf.AttValueXML;
+import com.era7.bioinfoxml.gexf.AttValuesXML;
+import com.era7.bioinfoxml.gexf.AttributeXML;
+import com.era7.bioinfoxml.gexf.AttributesXML;
+import com.era7.bioinfoxml.gexf.EdgeXML;
+import com.era7.bioinfoxml.gexf.GexfXML;
+import com.era7.bioinfoxml.gexf.GraphXML;
+import com.era7.bioinfoxml.gexf.NodeXML;
+import com.era7.bioinfoxml.gexf.viz.VizColorXML;
+import com.era7.bioinfoxml.gexf.viz.VizPositionXML;
+import com.era7.bioinfoxml.gexf.viz.VizSizeXML;
+import com.era7.bioinfoxml.go.GoAnnotationXML;
+import com.era7.bioinfoxml.go.GoTermXML;
+import com.era7.era7xmlapi.model.XMLElementException;
 import java.util.ArrayList;
 import java.util.List;
 import org.jdom2.Element;

@@ -12,9 +12,9 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
-package com.era7.lib.bioinfoxml.util;
+package com.era7.bioinfoxml.util;
 
-import com.era7.lib.era7xmlapi.model.XMLElement;
+import com.era7.era7xmlapi.model.XMLElement;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -31,7 +31,7 @@ import org.jdom2.Element;
  */
 public class XMLWrapperClassCreator {
 
-    public static final String NECESSARY_IMPORTS = "import com.era7.lib.era7xmlapi.model.XMLElement;\nimport com.era7.lib.era7xmlapi.model.XMLElementException;"
+    public static final String NECESSARY_IMPORTS = "import com.era7.era7xmlapi.model.XMLElement;\nimport com.era7.era7xmlapi.model.XMLElementException;"
             + "\nimport java.util.ArrayList;\nimport java.util.List;\nimport org.jdom2.Element;\n\n";
     public static final String VARS_PREFIX = "public static final String ";
     private static final String CLASS_NAME_CONSTRUCTOR_VAR = "lalala";

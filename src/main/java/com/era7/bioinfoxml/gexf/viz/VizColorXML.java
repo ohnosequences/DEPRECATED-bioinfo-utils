@@ -13,11 +13,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.era7.lib.bioinfoxml.gexf.viz;
+package com.era7.bioinfoxml.gexf.viz;
 
-import com.era7.lib.era7xmlapi.model.NameSpace;
-import com.era7.lib.era7xmlapi.model.XMLElement;
-import com.era7.lib.era7xmlapi.model.XMLElementException;
+import com.era7.era7xmlapi.model.NameSpace;
+import com.era7.era7xmlapi.model.XMLElement;
+import com.era7.era7xmlapi.model.XMLElementException;
 import org.jdom2.Element;
 
 

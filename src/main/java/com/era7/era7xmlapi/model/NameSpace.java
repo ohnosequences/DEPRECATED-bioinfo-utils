@@ -1,8 +1,8 @@
-package com.era7.lib.era7xmlapi.model;
+package com.era7.era7xmlapi.model;
 
 import org.jdom2.Namespace;
 
-import com.era7.lib.era7xmlapi.interfaces.INameSpace;
+import com.era7.era7xmlapi.interfaces.INameSpace;
 
 /**
  * 

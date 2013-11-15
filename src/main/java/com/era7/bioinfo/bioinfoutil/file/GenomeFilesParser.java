@@ -2,12 +2,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.era7.lib.bioinfo.bioinfoutil.file;
+package com.era7.bioinfo.bioinfoutil.file;
 
-import com.era7.lib.bioinfoxml.genome.feature.ORF;
-import com.era7.lib.bioinfoxml.genome.feature.RNA;
-import com.era7.lib.bioinfoxml.genome.GenomeElement;
-import com.era7.lib.era7xmlapi.model.XMLElementException;
+import com.era7.bioinfoxml.genome.feature.ORF;
+import com.era7.bioinfoxml.genome.feature.RNA;
+import com.era7.bioinfoxml.genome.GenomeElement;
+import com.era7.era7xmlapi.model.XMLElementException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;

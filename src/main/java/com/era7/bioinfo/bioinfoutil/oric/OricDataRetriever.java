@@ -2,9 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.era7.lib.bioinfo.bioinfoutil.oric;
+package com.era7.bioinfo.bioinfoutil.oric;
 
-import com.era7.lib.bioinfoxml.oric.Oric;
+import com.era7.bioinfoxml.oric.Oric;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;

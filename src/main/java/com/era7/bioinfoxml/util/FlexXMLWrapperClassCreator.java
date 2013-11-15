@@ -12,9 +12,9 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
-package com.era7.lib.bioinfoxml.util;
+package com.era7.bioinfoxml.util;
 
-import com.era7.lib.era7xmlapi.model.XMLElement;
+import com.era7.era7xmlapi.model.XMLElement;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;

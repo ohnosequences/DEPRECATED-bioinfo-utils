@@ -1,4 +1,4 @@
-package com.era7.lib.era7xmlapi.interfaces;
+package com.era7.era7xmlapi.interfaces;
 
 
 public interface IXmlThing {

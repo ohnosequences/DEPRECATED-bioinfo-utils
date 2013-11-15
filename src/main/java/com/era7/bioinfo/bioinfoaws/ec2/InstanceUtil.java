@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package com.era7.lib.bioinfo.bioinfoaws.ec2;
+package com.era7.bioinfo.bioinfoaws.ec2;
 
 import java.io.BufferedReader;
 import java.io.IOException;

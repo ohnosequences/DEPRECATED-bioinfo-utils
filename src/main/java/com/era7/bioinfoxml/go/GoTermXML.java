@@ -12,9 +12,9 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
-package com.era7.lib.bioinfoxml.go;
+package com.era7.bioinfoxml.go;
 
-import com.era7.lib.era7xmlapi.model.XMLElement;
+import com.era7.era7xmlapi.model.XMLElement;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import org.jdom2.Document;

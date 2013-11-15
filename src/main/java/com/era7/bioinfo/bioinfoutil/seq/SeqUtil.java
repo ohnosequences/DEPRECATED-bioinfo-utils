@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.era7.lib.bioinfo.bioinfoutil.seq;
+package com.era7.bioinfo.bioinfoutil.seq;
 
 import java.io.*;
 import java.util.HashMap;
