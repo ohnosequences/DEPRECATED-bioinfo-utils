@@ -18,11 +18,15 @@ package com.era7.bioinfoxml.uniprot;
 import com.era7.bioinfoxml.go.GoTermXML;
 import com.era7.era7xmlapi.model.XMLElement;
 import com.era7.era7xmlapi.model.XMLElementException;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
-import org.jdom2.xpath.XPath;
+import org.jdom2.filter.Filters;
+import org.jdom2.xpath.XPathExpression;
+import org.jdom2.xpath.XPathFactory;
 
 /**
  *
@@ -262,26 +266,29 @@ public class ProteinXML extends XMLElement{
         if(doc == null){
             doc = root.getDocument();
         }
-
-        List processGoTerms = XPath.selectNodes(doc, "//protein[id/text()='"+getId()+"']//"+GoTermXML.TAG_NAME+"["+GoTermXML.ASPECT_TAG_NAME+"/text()='"+GoTermXML.ASPECT_PROCESS+"']");
-        List functionGoTerms = XPath.selectNodes(doc, "//protein[id/text()='"+getId()+"']//"+GoTermXML.TAG_NAME+"["+GoTermXML.ASPECT_TAG_NAME+"/text()='"+GoTermXML.ASPECT_FUNCTION+"']");
-        List componentGoTerms = XPath.selectNodes(doc, "//protein[id/text()='"+getId()+"']//"+GoTermXML.TAG_NAME+"["+GoTermXML.ASPECT_TAG_NAME+"/text()='"+GoTermXML.ASPECT_COMPONENT+"']");
-
-        for(Object processGo : processGoTerms){
-            Element tempElem = (Element) processGo;
-            tempElem.detach();
-            this.addGoTerm(new GoTermXML(tempElem), true);
+        
+        XPathExpression<Element> xpProcess = XPathFactory.instance().compile("//protein[id/text()='"+getId()+"']//"+GoTermXML.TAG_NAME+"["+GoTermXML.ASPECT_TAG_NAME+"/text()='"+GoTermXML.ASPECT_PROCESS+"']", Filters.element());
+        List<Element> processGoTerms = xpProcess.evaluate(doc);
+        
+        XPathExpression<Element> xpFunction = XPathFactory.instance().compile("//protein[id/text()='"+getId()+"']//"+GoTermXML.TAG_NAME+"["+GoTermXML.ASPECT_TAG_NAME+"/text()='"+GoTermXML.ASPECT_FUNCTION+"']", Filters.element());
+        List<Element> functionGoTerms = xpFunction.evaluate(doc);
+        
+        XPathExpression<Element> xpComponent = XPathFactory.instance().compile("//protein[id/text()='"+getId()+"']//"+GoTermXML.TAG_NAME+"["+GoTermXML.ASPECT_TAG_NAME+"/text()='"+GoTermXML.ASPECT_COMPONENT+"']", Filters.element());
+        List<Element> componentGoTerms = xpComponent.evaluate(doc);
+                
+        for(Element processGo : processGoTerms){
+        	processGo.detach();
+            this.addGoTerm(new GoTermXML(processGo), true);
         }
-        for(Object componentGo : componentGoTerms){
-            Element tempElem = (Element) componentGo;
-            tempElem.detach();
-            this.addGoTerm(new GoTermXML(tempElem), true);
+        for(Element componentGo : componentGoTerms){
+        	componentGo.detach();
+            this.addGoTerm(new GoTermXML(componentGo), true);
         }
-        for(Object functionGo : functionGoTerms){
-            Element tempElem = (Element) functionGo;
-            tempElem.detach();
-            this.addGoTerm(new GoTermXML(tempElem), true);
+        for(Element functionGo : functionGoTerms){
+        	functionGo.detach();
+            this.addGoTerm(new GoTermXML(functionGo), true);
         }
+       
 
     }
 
