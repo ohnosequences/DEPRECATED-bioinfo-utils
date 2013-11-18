@@ -181,7 +181,7 @@ public class PredictedRna extends XMLElement implements Comparable<PredictedRna>
     }
 
     public ArrayList<Frameshift> getFrameshifts() throws XMLElementException{
-        ArrayList<Frameshift> array = null;
+        ArrayList<Frameshift> array = new ArrayList<>();
         Element temp = root.getChild(FRAME_SHIFTS_TAG_NAME);
         if(temp != null){
             List<Element> list = temp.getChildren(Frameshift.TAG_NAME);
