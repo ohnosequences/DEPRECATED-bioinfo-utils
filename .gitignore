@@ -8,7 +8,9 @@ project/boot/
 project/plugins/project/
 
 # Scala-IDE specific
+.classpath
 .scala_dependencies
+.project
 
 # st2
 *.sublime-project
