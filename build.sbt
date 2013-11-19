@@ -6,7 +6,7 @@ name := "bioinfo-util"
 
 description := "Bioinformatics utility classes"
 
-organization := "ohnosequences"
+organization := "com.era7"
 
 libraryDependencies += "junit" % "junit" % "3.8.1" % "test"
 
