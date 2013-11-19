@@ -18,6 +18,7 @@ project/plugins/project/
 data/in/
 data/out/
 
+# credentials
 credentials.sbt
 *credentials*
 
