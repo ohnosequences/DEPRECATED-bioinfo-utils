@@ -6,9 +6,6 @@ package com.era7.bioinfo.bioinfoutil.uniprot;
 
 import com.era7.bioinfoxml.PredictedGene;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 

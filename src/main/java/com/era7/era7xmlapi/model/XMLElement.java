@@ -1,7 +1,6 @@
 package com.era7.era7xmlapi.model;
 
 import java.io.CharArrayReader;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
