@@ -6,7 +6,6 @@
 package com.era7.bioinfo.bioinfoaws.ec2;
 
 import com.amazonaws.services.ec2.AmazonEC2Client;
-import com.amazonaws.services.ec2.model.CancelSpotInstanceRequestsRequest;
 import java.util.List;
 
 /**
