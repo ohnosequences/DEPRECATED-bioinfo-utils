@@ -21,6 +21,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 public class InstanceUtil {
 
     public static final String METADA_INSTANCE_ID_WEB_SERVICE_URL = "http://169.254.169.254/latest/meta-data/instance-id";
+    public static final String METADATA_AVAILABILITY_ZONE_WEB_SERVICE_URL = "http://169.254.169.254/latest/meta-data/placement/availability-zone";
 
     public static String getRunningInstanceId() throws ClientProtocolException, IOException {
         String id = "";
@@ -32,6 +33,23 @@ public class InstanceUtil {
         id = client.execute(httpget, responseHandler);
 
         return id;
+    }
+    
+public static String getRunningInstanceAvailabilityZone() throws IOException{
+        
+        String availabilityZone = "";
+
+        GetMethod getMethod = new GetMethod(METADATA_AVAILABILITY_ZONE_WEB_SERVICE_URL);
+
+        HttpClient client = new HttpClient();
+        client.executeMethod(getMethod);
+        InputStream inStream = getMethod.getResponseBodyAsStream();
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inStream));
+        availabilityZone = reader.readLine();
+        reader.close();
+
+        return availabilityZone;
     }
 
 }
