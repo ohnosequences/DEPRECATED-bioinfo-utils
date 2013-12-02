@@ -39,15 +39,11 @@ public static String getRunningInstanceAvailabilityZone() throws IOException{
         
         String availabilityZone = "";
 
-        GetMethod getMethod = new GetMethod(METADATA_AVAILABILITY_ZONE_WEB_SERVICE_URL);
+        HttpGet httpget = new HttpGet(METADATA_AVAILABILITY_ZONE_WEB_SERVICE_URL);
 
-        HttpClient client = new HttpClient();
-        client.executeMethod(getMethod);
-        InputStream inStream = getMethod.getResponseBodyAsStream();
-
-        BufferedReader reader = new BufferedReader(new InputStreamReader(inStream));
-        availabilityZone = reader.readLine();
-        reader.close();
+        HttpClient client = new DefaultHttpClient();
+        ResponseHandler<String> responseHandler = new BasicResponseHandler();
+        availabilityZone = client.execute(httpget, responseHandler);
 
         return availabilityZone;
     }
