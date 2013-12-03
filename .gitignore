@@ -7,10 +7,11 @@ src_managed/
 project/boot/
 project/plugins/project/
 
-# Scala-IDE specific
+# IDE specific
 .classpath
 .scala_dependencies
 .project
+.settings
 
 # st2
 *.sublime-project
