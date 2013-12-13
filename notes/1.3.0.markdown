@@ -1,0 +1,4 @@
+* Updated project dependencies (AWS SDK for Java to v1.6.8)
+* Refactored packages adapting them to new prefix ohnosequences
+* Adding a few things that were lost from bioinfoaws lib when the refactoring for all these projects was carried out
+* Added CredentialsRetriever class
