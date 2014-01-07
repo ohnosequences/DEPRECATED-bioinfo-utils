@@ -40,16 +40,10 @@ public class MG7DataXML extends XMLElement{
     public static final String BASE_FOLDER_TAG_NAME = "base_folder";
     public static final String BLAST_PATH_TAG_NAME = "blast_path";
     
-    public static final String MD5_FILE_SUFFIX_TAG_NAME = "md5_file_suffix";
     public static final String ERROR_FILE_SUFFIX_TAG_NAME = "error_file_suffix";
     
     public static final String PROJECT_PREFIX_TAG_NAME = "project_prefix";
     
-    public static final String SNAPSHOT_ID_TAG_NAME = "snapshot_id";
-    public static final String VOLUME_SIZE_IN_GB_TAG_NAME = "volume_size_in_gb";
-    public static final String VOLUME_DEVICE_TAG_NAME = "volume_device";
-    
-    public static final String MOUNTING_DIR_TAG_NAME = "mounting_dir";
     public static final String KEY_PAIR_NAME_TAG_NAME = "key_pair_name";
     
     public static final String NUMBER_OF_CONCURRENT_INSTANCES_TAG_NAME = "number_of_concurrent_instances";
@@ -93,13 +87,8 @@ public class MG7DataXML extends XMLElement{
     public void setInstanceType(String value){  setNodeText(INSTANCE_TYPE_TAG_NAME, value);}
     public void setBaseFolder(String value){    setNodeText(BASE_FOLDER_TAG_NAME, value);}
     public void setBlastPath(String value){ setNodeText(BLAST_PATH_TAG_NAME, value);}
-    public void setMD5FileSufix(String value){  setNodeText(MD5_FILE_SUFFIX_TAG_NAME, value);}
     public void setErrorFileSufix(String value){    setNodeText(ERROR_FILE_SUFFIX_TAG_NAME, value);}
     public void setProjectPrefix(String value){ setNodeText(PROJECT_PREFIX_TAG_NAME, value);}
-    public void setSnapshotId(String value){ setNodeText(SNAPSHOT_ID_TAG_NAME, value);}
-    public void setVolumeSizeInGB(String value){ setNodeText(VOLUME_SIZE_IN_GB_TAG_NAME, value);}
-    public void setVolumeDevice(String value){ setNodeText(VOLUME_DEVICE_TAG_NAME, value);}
-    public void setMountingDir(String value){ setNodeText(MOUNTING_DIR_TAG_NAME, value);}
     public void setKeyPairName(String value){ setNodeText(KEY_PAIR_NAME_TAG_NAME, value);}
     public void setNumberOfConcurrentInstances(String value){ setNodeText(NUMBER_OF_CONCURRENT_INSTANCES_TAG_NAME, value);}
     public void setSpotInstancePrice(String value){ setNodeText(SPOT_INSTANCE_PRICE_TAG_NAME, value);}
@@ -122,13 +111,8 @@ public class MG7DataXML extends XMLElement{
     public String getInstanceType(){    return getNodeText(INSTANCE_TYPE_TAG_NAME);}
     public String getBaseFolder(){  return getNodeText(BASE_FOLDER_TAG_NAME);}
     public String getBlastPath(){   return getNodeText(BLAST_PATH_TAG_NAME);}
-    public String getMD5FileSufix(){    return getNodeText(MD5_FILE_SUFFIX_TAG_NAME);}
     public String getProjectPrefix(){   return getNodeText(PROJECT_PREFIX_TAG_NAME);}
     public String getErroFileSufix(){   return getNodeText(ERROR_FILE_SUFFIX_TAG_NAME);}
-    public String getSnapshotId(){   return getNodeText(SNAPSHOT_ID_TAG_NAME);}
-    public int getVolumeSizeInGB(){   return Integer.parseInt(getNodeText(VOLUME_SIZE_IN_GB_TAG_NAME));}
-    public String getVolumeDevice(){   return getNodeText(VOLUME_DEVICE_TAG_NAME);}
-    public String getMountingDir(){   return getNodeText(MOUNTING_DIR_TAG_NAME);}
     public String getKeyPairName(){   return getNodeText(KEY_PAIR_NAME_TAG_NAME);}
     public int getNumberOfConcurrentInstances(){   return Integer.parseInt(getNodeText(NUMBER_OF_CONCURRENT_INSTANCES_TAG_NAME));}
     public String getSpotInstancePrice(){   return getNodeText(SPOT_INSTANCE_PRICE_TAG_NAME);}
