@@ -59,6 +59,8 @@ public class MG7DataXML extends XMLElement{
     public static final String STORE_HITS_TAG_NAME = "store_hits";
     public static final String STORE_HSPS_TAG_NAME = "store_hsps";
     
+    public static final String BLAST_NT_S3_FILE_TAG_NAME = "blast_nt_s3_file";
+    
     public MG7DataXML(){
         super(new Element(TAG_NAME));
     }
@@ -98,6 +100,7 @@ public class MG7DataXML extends XMLElement{
     public void setResultsDBFolder(String value){   setNodeText(RESULTS_DB_FOLDER, value);}
     public void setStoreHits(Boolean value){ setNodeText(STORE_HITS_TAG_NAME, String.valueOf(value));}
     public void setStoreHsps(Boolean value){ setNodeText(STORE_HSPS_TAG_NAME, String.valueOf(value));}
+    public void setBlastNtS3File(String value){   setNodeText(BLAST_NT_S3_FILE_TAG_NAME, value);}
     
     //----------------GETTERS---------------------
     public String getQueueName(){       return getNodeText(QUEUE_NAME_TAG_NAME);  }
@@ -122,5 +125,6 @@ public class MG7DataXML extends XMLElement{
     public String getResultsDBFolder(){ return getNodeText(RESULTS_DB_FOLDER);}
     public boolean getStoreHits(){  return Boolean.parseBoolean(getNodeText(STORE_HITS_TAG_NAME));}
     public boolean getStoreHsps(){  return Boolean.parseBoolean(getNodeText(STORE_HSPS_TAG_NAME));}
+    public String getBlastNtS3File(){ return getNodeText(BLAST_NT_S3_FILE_TAG_NAME);}
     
 }
