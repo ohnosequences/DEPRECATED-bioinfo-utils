@@ -1,11 +1,16 @@
+import AssemblyKeys._
+
 Nice.javaProject
 
+javaVersion := "1.8"
+
+fatArtifactSettings
+
+organization := "ohnosequences"
 
 name := "bioinfo-util"
 
 description := "Bioinformatics utility classes"
-
-organization := "ohnosequences"
 
 bucketSuffix := "era7.com"
 
@@ -21,3 +26,15 @@ libraryDependencies ++= Seq(
 dependencyOverrides ++= Set(
   "commons-codec" % "commons-codec" % "1.6"
 )
+
+// fat jar assembly settings
+
+assemblyOption in assembly ~= { _.copy(includeScala = false) }
+
+mergeStrategy in assembly ~= { old => {
+    case PathList("META-INF", "CHANGES.txt")                     => MergeStrategy.rename
+    case PathList("META-INF", "LICENSES.txt")                    => MergeStrategy.rename
+    case PathList("org", "apache", "commons", "collections", _*) => MergeStrategy.first
+    case x                                                       => old(x)
+  }
+}
