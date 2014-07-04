@@ -19,7 +19,7 @@ import org.xml.sax.InputSource;
 
 /**
  *
- * @author Pablo Pareja Tobes <ppareja@era7.com>
+ * @author <a href="mailto:ppareja@ohnosequences.com">Pablo Pareja-Tobes</a>
  */
 public class XMLUtil {
 

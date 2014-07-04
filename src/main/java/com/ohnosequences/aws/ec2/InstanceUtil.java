@@ -16,7 +16,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 /**
  *
- * @author ppareja
+ * @author <a href="mailto:ppareja@ohnosequences.com">Pablo Pareja-Tobes</a>
  */
 public class InstanceUtil {
 

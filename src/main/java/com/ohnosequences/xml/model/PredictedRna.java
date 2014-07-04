@@ -23,7 +23,7 @@ import org.jdom2.Element;
 
 /**
  *
- * @author ppareja
+ * @author <a href="mailto:ppareja@ohnosequences.com">Pablo Pareja-Tobes</a>
  */
 public class PredictedRna extends XMLElement implements Comparable<PredictedRna>{
 

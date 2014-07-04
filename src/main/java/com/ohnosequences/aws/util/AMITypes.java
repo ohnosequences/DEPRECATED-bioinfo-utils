@@ -7,7 +7,7 @@ package com.ohnosequences.aws.util;
 
 /**
  *
- * @author ppareja
+ * @author <a href="mailto:ppareja@ohnosequences.com">Pablo Pareja-Tobes</a>
  */
 public class AMITypes {
 
