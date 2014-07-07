@@ -8,8 +8,8 @@ package com.ohnosequences.util;
 /**
  * 
  * @author <a href="mailto:ppareja@ohnosequences.com">Pablo Pareja-Tobes</a>
- * @param <A>
- * @param <B>
+ * @param <A> A
+ * @param <B> B
  */
 public class Pair<A, B> {
     private A value1;

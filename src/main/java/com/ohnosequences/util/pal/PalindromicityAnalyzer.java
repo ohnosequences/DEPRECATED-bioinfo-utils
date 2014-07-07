@@ -36,6 +36,9 @@ public class PalindromicityAnalyzer {
      * Letters must be lower-case
      * @param windowLength Length of the window used
      * @param seq Sequence to be analyzed
+     * @param onlyWholeWindows Only whole windows
+     * @param withPatterns With patterns
+     * @param withMaxWordLength With maximum word length
      * @return The result of the palindromic analysis
      */
     public PalindromicityResult analyzeOddAxisPalindromicity(
@@ -258,6 +261,8 @@ public class PalindromicityAnalyzer {
      * Letters must be lower-case
      * @param windowLength Length of the window used
      * @param seq Sequence to be analyzed
+     * @param onlyWholeWindows Only whole windows
+     * @param withPatterns With patterns
      * @return The result of the palindromic analysis
      */
     public PalindromicityResult analyzeMaxWordLengthEvenAxisPalindromicity(
@@ -366,6 +371,9 @@ public class PalindromicityAnalyzer {
      * Letters must be lower-case
      * @param windowLength Length of the window used
      * @param seq Sequence to be analyzed
+     * @param onlyWholeWindows Only whole windows
+     * @param withPatterns With patterns
+     * @param withMaxWordLength With maximum word length
      * @return The result of the palindromic analysis
      */
     public PalindromicityResult analyzeEvenAxisPalindromicity(

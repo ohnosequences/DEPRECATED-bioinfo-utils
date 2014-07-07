@@ -241,7 +241,8 @@ public class XMLElement implements IElement {
     /**
      * Returns the cdata text of the first element with tag name = 'tagName'
      * If there is no such node it returns the empty string
-     * @param tagName
+     * @param tagName Name of the tag
+     * @return cdata text of the first element with tag name = 'tagName'
      */
     protected String getNodeText(String tagName) {
         Element element = this.root.getChild(tagName);
@@ -279,7 +280,7 @@ public class XMLElement implements IElement {
     /**
      * Sets the 'text' for the attribute with name 'name'
      * @param name
-     * @parm text
+     * @param text
      */
     protected void setAttributeText(String name, String text) {
        root.setAttribute(name, text);
