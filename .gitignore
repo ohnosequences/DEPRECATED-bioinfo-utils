@@ -6,21 +6,21 @@ lib_managed/
 src_managed/
 project/boot/
 project/plugins/project/
+.cache
 
 # Scala-IDE specific
 .scala_dependencies
+.classpath
 .project
-.settings
-
-# IntelliJ-IDE specific
-.idea
+.settings/
 
 # st2
 *.sublime-project
 *.sublime-workspace
+# Intellij Idea IDE specific
+.idea/
+*.iml
 
 # data folders
 data/in/
 data/out/
-
-credentials.sbt
