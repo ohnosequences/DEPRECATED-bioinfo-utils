@@ -19,7 +19,7 @@ libraryDependencies ++= Seq(
   "junit" % "junit" % "3.8.1" % "test",
   "com.amazonaws" % "aws-java-sdk" % "1.6.8",
   "org.apache.httpcomponents" % "httpclient" % "4.2",
-  "org.apache.commons" % "commons-math" % "2.1",
+  "org.apache.commons" % "commons-math" % "2.2",
   "org.jdom" % "jdom" % "2.0.2"
 )
 
