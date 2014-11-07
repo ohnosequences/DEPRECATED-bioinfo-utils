@@ -29,7 +29,7 @@ public class UniprotProteinRetreiver {
     public static PredictedGene getUniprotDataFor(PredictedGene gene, boolean withSequence) throws Exception {
 
 
-        String columnsParameter = "protein names,organism,comment(FUNCTION),ec,interpro,go,pathway,families,keywords,length,subcellular locations,citation,genes,go-id,domains,length";
+        String columnsParameter = "protein names,organism,comment(FUNCTION),ec,interpro,go,pathway,families,keywords,length,subcellular locations,citation,genes,go-id,domains";
         if(withSequence){
             columnsParameter += ",sequence";
         }
@@ -61,19 +61,13 @@ public class UniprotProteinRetreiver {
         } while (response == null);
 
 
-        int maxI = 16;
+        int maxI = 15;
         if(withSequence){
-            maxI = 17;
+            maxI = 16;
         }
 
         String[] columns = response.split("\t");
-        System.out.println("columns = " + columns);
-        System.out.println("columns.length = " + columns.length);
-	    System.out.println("Columns values: ");
-	    for(int i = 0; i < columns.length; i++){
-		    System.out.println(columns[i]);
-	    }
-	    System.out.println("Main cycle...");
+
 
         for (int i = 0; i < maxI; i++) {
             String currentValue = "";
@@ -84,10 +78,7 @@ public class UniprotProteinRetreiver {
 //                currentValue = response.replaceFirst("\t", "");
 //            }
 
-
             currentValue = columns[i];
-
-	        System.out.println("i = " + i + " currentValue = " +  currentValue);
 
             switch (i) {
                 case 0:
@@ -136,11 +127,8 @@ public class UniprotProteinRetreiver {
                     gene.setDomains(currentValue);
                     break;
                 case 15:
-                    gene.setLength(Integer.parseInt(currentValue));
-                    break;
-                case 16:
-                    gene.setSequence(currentValue.replaceAll(" ", ""));
-                    break;
+	                gene.setSequence(currentValue.replaceAll(" ", ""));
+	                break;
 
             }
 
