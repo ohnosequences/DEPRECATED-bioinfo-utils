@@ -67,8 +67,8 @@ public class UniprotProteinRetreiver {
         }
 
         String[] columns = response.split("\t");
-//        System.out.println("columns = " + columns);
-//        System.out.println("columns.length = " + columns.length);
+        System.out.println("columns = " + columns);
+        System.out.println("columns.length = " + columns.length);
 
         for (int i = 0; i < maxI; i++) {
             String currentValue = "";
@@ -79,9 +79,10 @@ public class UniprotProteinRetreiver {
 //                currentValue = response.replaceFirst("\t", "");
 //            }
 
+	        System.out.println("i = " + i + " currentValue = " +  currentValue);
+
             currentValue = columns[i];
 
-            //System.out.println("i = " + i + " currentValue = " +  currentValue);
             switch (i) {
                 case 0:
                     gene.setProteinNames(currentValue);
