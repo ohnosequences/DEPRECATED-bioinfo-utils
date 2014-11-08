@@ -29,7 +29,7 @@ public class UniprotProteinRetreiver {
     public static PredictedGene getUniprotDataFor(PredictedGene gene, boolean withSequence) throws Exception {
 
 
-        String columnsParameter = "protein names,organism,comment(FUNCTION),ec,interpro,go,pathway,families,keywords,length,subcellular locations,citation,genes,go-id,domains";
+        String columnsParameter = "protein names,organism,comment(FUNCTION),ec,interpro,go,pathway,families,keywords,length,comment(subcellular location),citation,genes,go-id,domains";
         if(withSequence){
             columnsParameter += ",sequence";
         }
