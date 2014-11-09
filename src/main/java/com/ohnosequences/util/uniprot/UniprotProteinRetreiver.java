@@ -29,7 +29,7 @@ public class UniprotProteinRetreiver {
     public static PredictedGene getUniprotDataFor(PredictedGene gene, boolean withSequence) throws Exception {
 
 
-        String columnsParameter = "protein names,organism,comment(FUNCTION),ec,interpro,go,pathway,families,keywords,length,comment(subcellular location),citation,genes,go-id,domains";
+        String columnsParameter = "protein names,organism,comment(FUNCTION),ec,interpro,go,pathway,families,keywords,length,comment(subcellular location),citation,genes,go-id,domains,id";
         if(withSequence){
             columnsParameter += ",sequence";
         }
@@ -61,12 +61,14 @@ public class UniprotProteinRetreiver {
         } while (response == null);
 
 
-        int maxI = 15;
+        int maxI = 16;
         if(withSequence){
-            maxI = 16;
+            maxI = 17;
         }
 
         String[] columns = response.split("\t");
+
+	    //System.out.println(response);
 
 
         for (int i = 0; i < maxI; i++) {
@@ -77,6 +79,8 @@ public class UniprotProteinRetreiver {
 //            } else {
 //                currentValue = response.replaceFirst("\t", "");
 //            }
+
+	        //System.out.println(i + ": '" + columns[i] + "'");
 
             currentValue = columns[i];
 
@@ -126,7 +130,10 @@ public class UniprotProteinRetreiver {
                 case 14:
                     gene.setDomains(currentValue);
                     break;
-                case 15:
+	            case 15:
+		            gene.setAccession(currentValue);
+		            break;
+                case 16:
 	                gene.setSequence(currentValue.replaceAll(" ", ""));
 	                break;
 
@@ -144,4 +151,11 @@ public class UniprotProteinRetreiver {
 
         return gene;
     }
+
+	public static void main(String args[]) throws Exception {
+		PredictedGene gene = new PredictedGene();
+		gene.setAnnotationUniprotId("E1XRR5");
+
+		PredictedGene gene1 = getUniprotDataFor(gene,false);
+	}
 }
