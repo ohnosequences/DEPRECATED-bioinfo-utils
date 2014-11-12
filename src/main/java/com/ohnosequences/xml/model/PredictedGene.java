@@ -168,7 +168,7 @@ public class PredictedGene extends XMLElement implements Comparable<PredictedGen
     }
 
     //----------------GETTERS---------------------
-    public String getId( ){  return getNodeText(ID_TAG_NAME);}
+    public String getId( ){    return getNodeText(ID_TAG_NAME);    }
     public String getHitDef(){   return getNodeText(HIT_DEF_TAG_NAME);}
     public String getGeneNames(){   return getNodeText(GENE_NAMES_TAG_NAME);}
     public String getDomains(){   return getNodeText(DOMAINS_TAG_NAME);}
@@ -183,17 +183,45 @@ public class PredictedGene extends XMLElement implements Comparable<PredictedGen
     public String getPathway(){ return getNodeText(PATHWAY_TAG_NAME);}
     public String getProteinFamily(){   return getNodeText(PROTEIN_FAMILY_TAG_NAME);}
     public String getKeywords(){    return getNodeText(KEYWORDS_TAG_NAME);}
-    public int getLength(){ return Integer.parseInt(getNodeText(LENGTH_TAG_NAME));}
+    public int getLength(){
+		String temp = getNodeText(LENGTH_TAG_NAME);
+	    if(temp == null){
+		    return -1;
+	    }else{
+		    return Integer.parseInt(temp);
+	    }
+    }
     public String getSubcellularLocations(){    return getNodeText(SUBCELLULAR_LOCATIONS_TAG_NAME);}
     public String getPubmedId(){    return getNodeText(PUBMED_ID_TAG_NAME);}
     public String getSequence(){    return getNodeText(SEQUENCE_TAG_NAME);}
-    public double getEvalue(){  return Double.parseDouble(getNodeText(EVALUE_TAG_NAME));}
+    public double getEvalue(){
+	    String temp = getNodeText(EVALUE_TAG_NAME);
+	    if(temp == null){
+		    return Double.NaN;
+	    }else{
+		    return Double.parseDouble(temp);
+	    }
+    }
     public String getGeneDismissedBy(){ return getNodeText(GENE_DISMISSED_BY_TAG_NAME);}
     public String getStatus(){  return getNodeText(STATUS_TAG_NAME);}
     public String getContigId( ){  return getNodeText(CONTIG_ID_TAG_NAME);}
-    public int getStartPosition( ){  return Integer.parseInt(getNodeText(START_POSITION_TAG_NAME));}
+    public int getStartPosition( ){
+	    String temp = getNodeText(START_POSITION_TAG_NAME);
+	    if(temp == null){
+		    return -1;
+	    }else{
+		    return Integer.parseInt(temp);
+	    }
+    }
     public boolean getStartIsCanonical(){   return Boolean.parseBoolean(getNodeText(START_IS_CANONICAL_TAG_NAME));}
-    public int getEndPosition( ){  return Integer.parseInt(getNodeText(END_POSITION_TAG_NAME));}
+    public int getEndPosition( ){
+	    String temp = getNodeText(END_POSITION_TAG_NAME);
+	    if(temp == null){
+		    return -1;
+	    }else{
+		    return Integer.parseInt(temp);
+	    }
+    }
     public boolean getEndIsCanonical(){ return Boolean.parseBoolean(getNodeText(END_IS_CANONICAL_TAG_NAME));}
     public String getStrand( ){  return getNodeText(STRAND_TAG_NAME);}
     public String getAnnotationUniprotId( ){  return getNodeText(ANNOTATION_UNIPROT_ID_TAG_NAME);}
