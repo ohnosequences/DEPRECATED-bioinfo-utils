@@ -1,0 +1,4 @@
+**CRITICAL** _PLEASE UPDATE TO THIS VERSION!! DO IT NOW!_
+
+- fixes #5 which involved the library depending on code that was not actually declared as a dependency
+- fixes #6 no need for fat jars
