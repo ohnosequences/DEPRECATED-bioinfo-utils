@@ -4,7 +4,6 @@
  */
 package com.era7.bioinfo.bioinfoutil.gephi;
 
-import com.era7.bioinfoxml.uniprot.ProteinXML;
 import com.era7.bioinfoxml.gexf.AttValueXML;
 import com.era7.bioinfoxml.gexf.AttValuesXML;
 import com.era7.bioinfoxml.gexf.AttributeXML;
@@ -16,11 +15,13 @@ import com.era7.bioinfoxml.gexf.NodeXML;
 import com.era7.bioinfoxml.gexf.viz.VizColorXML;
 import com.era7.bioinfoxml.gexf.viz.VizPositionXML;
 import com.era7.bioinfoxml.gexf.viz.VizSizeXML;
-import com.era7.bioinfoxml.go.GoAnnotationXML;
-import com.era7.bioinfoxml.go.GoTermXML;
-import com.era7.era7xmlapi.model.XMLElementException;
+import com.ohnosequences.xml.api.model.XMLElementException;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.ohnosequences.xml.model.go.GoAnnotationXML;
+import com.ohnosequences.xml.model.go.GoTermXML;
+import com.ohnosequences.xml.model.uniprot.ProteinXML;
 import org.jdom2.Element;
 
 /**

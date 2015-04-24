@@ -15,8 +15,7 @@
 
 package com.era7.bioinfoxml.gexf;
 
-import com.era7.era7xmlapi.model.XMLElement;
-import com.era7.era7xmlapi.model.XMLElementException;
+import com.ohnosequences.xml.api.model.XMLElement;
 import org.jdom2.Element;
 
 /**

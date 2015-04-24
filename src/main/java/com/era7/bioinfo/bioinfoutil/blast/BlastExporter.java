@@ -4,7 +4,7 @@
  */
 package com.era7.bioinfo.bioinfoutil.blast;
 
-import com.era7.era7xmlapi.model.XMLElement;
+import com.ohnosequences.xml.api.model.XMLElement;
 import com.era7.era7xmlapi.util.XMLUtil;
 import com.ohnosequences.xml.api.model.XMLElementException;
 import com.ohnosequences.xml.model.*;

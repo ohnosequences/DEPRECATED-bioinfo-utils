@@ -15,8 +15,8 @@
 package com.era7.bioinfoxml.mg7;
 
 import com.era7.bioinfoxml.Hit;
-import com.era7.era7xmlapi.model.XMLElement;
-import com.era7.era7xmlapi.model.XMLElementException;
+import com.ohnosequences.xml.api.model.XMLElement;
+import com.ohnosequences.xml.api.model.XMLElementException;
 import java.util.LinkedList;
 import java.util.List;
 import org.jdom2.Element;
