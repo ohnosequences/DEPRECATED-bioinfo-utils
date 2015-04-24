@@ -279,7 +279,7 @@ public class XMLElement implements IElement {
     /**
      * Sets the 'text' for the attribute with name 'name'
      * @param name
-     * @parm text
+     * @param text
      */
     protected void setAttributeText(String name, String text) {
        root.setAttribute(name, text);

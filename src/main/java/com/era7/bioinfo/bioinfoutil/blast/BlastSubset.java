@@ -13,7 +13,7 @@ import java.io.IOException;
 
 /**
  *
- * @author Pablo Pareja Tobes <ppareja@era7.com>
+ * @author <a href="mailto:ppareja@era7.com">Pablo Pareja Tobes</a>
  */
 public class BlastSubset {
  

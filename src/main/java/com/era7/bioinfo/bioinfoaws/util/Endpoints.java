@@ -6,7 +6,7 @@ package com.era7.bioinfo.bioinfoaws.util;
 
 /**
  *
- * @author Pablo Pareja Tobes <ppareja@era7.com>
+ * @author <a href="mailto:ppareja@era7.com">Pablo Pareja Tobes</a>
  */
 public class Endpoints {
     
