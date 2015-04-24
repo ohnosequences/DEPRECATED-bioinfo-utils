@@ -4,15 +4,12 @@
  */
 package com.era7.bioinfo.bioinfoutil.blast;
 
-import com.era7.bioinfoxml.BlastOutput;
-import com.era7.bioinfoxml.Iteration;
-import com.era7.bioinfoxml.uniprot.ProteinXML;
-import com.era7.bioinfoxml.ContigXML;
-import com.era7.bioinfoxml.Hit;
-import com.era7.bioinfoxml.Hsp;
 import com.era7.era7xmlapi.model.XMLElement;
-import com.era7.era7xmlapi.model.XMLElementException;
 import com.era7.era7xmlapi.util.XMLUtil;
+import com.ohnosequences.xml.api.model.XMLElementException;
+import com.ohnosequences.xml.model.*;
+import com.ohnosequences.xml.model.uniprot.ProteinXML;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;

@@ -4,10 +4,6 @@
  */
 package com.era7.bioinfo.bioinfoutil.go;
 
-import com.era7.bioinfoxml.go.GoAnnotationXML;
-import com.era7.bioinfoxml.go.GoTermXML;
-import com.era7.bioinfoxml.uniprot.ProteinXML;
-import com.era7.era7xmlapi.model.XMLElementException;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -16,6 +12,11 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.TreeSet;
+
+import com.ohnosequences.xml.api.model.XMLElementException;
+import com.ohnosequences.xml.model.go.GoAnnotationXML;
+import com.ohnosequences.xml.model.go.GoTermXML;
+import com.ohnosequences.xml.model.uniprot.ProteinXML;
 import org.jdom2.Element;
 
 /**

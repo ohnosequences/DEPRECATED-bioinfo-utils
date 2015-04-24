@@ -6,6 +6,10 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ohnosequences.xml.api.interfaces.IElement;
+import com.ohnosequences.xml.api.interfaces.INameSpace;
+import com.ohnosequences.xml.api.model.NameSpace;
+import com.ohnosequences.xml.api.model.XMLAttribute;
 import org.jdom2.filter.ElementFilter;
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -17,8 +21,6 @@ import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.XMLOutputter;
 import org.xml.sax.InputSource;
 
-import com.era7.era7xmlapi.interfaces.IElement;
-import com.era7.era7xmlapi.interfaces.INameSpace;
 
 public class XMLElement implements IElement {
 
