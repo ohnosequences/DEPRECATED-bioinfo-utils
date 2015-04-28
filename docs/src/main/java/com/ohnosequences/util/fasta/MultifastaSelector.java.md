@@ -1,165 +1,174 @@
 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) 2010-2012  "Oh no sequences!"
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 
 ```java
-package com.ohnosequences.util.uniprot;
+package com.ohnosequences.util.fasta;
 
-import com.ohnosequences.xml.model.PredictedGene;
+import com.ohnosequences.util.Executable;
+import com.ohnosequences.util.seq.SeqUtil;
 
+import java.io.*;
 import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.ResponseHandler;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.BasicResponseHandler;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
+import java.util.HashMap;
+import java.util.HashSet;
 
 /**
  *
- * @author ppareja
+ * @author Pablo Pareja Tobes <ppareja@era7.com>
  */
-public class UniprotProteinRetreiver {
+public class MultifastaSelector implements Executable{
 
-    public static String URL_UNIPROT = "http://www.uniprot.org/uniprot/";
-
-    public static PredictedGene getUniprotDataFor(PredictedGene gene, boolean withSequence) throws Exception {
-
-
-        String columnsParameter = "protein names,organism,comment(FUNCTION),ec,interpro,go,pathway,families,keywords,length,comment(subcellular location),citation,genes,go-id,domains,id";
-        if(withSequence){
-            columnsParameter += ",sequence";
+    public static final String REVERSED_ST = "R";
+    public static final int SEQUENCE_LINE_LENGTH = 60;
+    
+    @Override
+    public void execute(ArrayList<String> array) {
+        String[] args = new String[array.size()];
+        for (int i = 0; i < array.size(); i++) {
+            args[i] = array.get(i);
         }
-
-        HttpPost post = new HttpPost(URL_UNIPROT);
-        List<NameValuePair> formparams = new ArrayList<NameValuePair>();
-        formparams.add(new BasicNameValuePair("query", "accession:" + gene.getAnnotationUniprotId()));
-        formparams.add(new BasicNameValuePair("format", "tab"));
-        formparams.add(new BasicNameValuePair("columns", columnsParameter));
-        UrlEncodedFormEntity entity = new UrlEncodedFormEntity(formparams, "UTF-8");
-        post.setEntity(entity);
-
-        // execute the POST
-        String response = null;
-        HttpClient client = new DefaultHttpClient();
-        do {
-            System.out.println("Performing POST request...");
-            
-            ResponseHandler<String> responseHandler = new BasicResponseHandler();
-            String responseSt = client.execute(post, responseHandler);
-
-            String respNoHeader = responseSt.split("\n")[1];
-            
-            if (respNoHeader.isEmpty()) {
-                System.out.println("There was no response, trying again....");
-            }else{
-                response = respNoHeader;
-            }
-        } while (response == null);
-
-
-        int maxI = 16;
-        if(withSequence){
-            maxI = 17;
-        }
-
-        String[] columns = response.split("\t");
-
-	    //System.out.println(response);
-
-
-        for (int i = 0; i < maxI; i++) {
-            String currentValue = "";
-//            int index = response.indexOf("\t");
-//            if (i < 11) {
-//                currentValue = response.substring(0, index);
-//            } else {
-//                currentValue = response.replaceFirst("\t", "");
-//            }
-
-	        //System.out.println(i + ": '" + columns[i] + "'");
-
-            currentValue = columns[i];
-
-            switch (i) {
-                case 0:
-                    gene.setProteinNames(currentValue);
-                    break;
-                case 1:
-                    gene.setOrganism(currentValue);
-                    break;
-                case 2:
-                    gene.setCommentFunction(currentValue);
-                    break;
-                case 3:
-                    gene.setEcNumbers(currentValue);
-                    break;
-                case 4:
-                    gene.setInterpro(currentValue);
-                    break;
-                case 5:
-                    gene.setGeneOntology(currentValue);
-                    break;
-                case 6:
-                    gene.setPathway(currentValue);
-                    break;
-                case 7:
-                    gene.setProteinFamily(currentValue);
-                    break;
-                case 8:
-                    gene.setKeywords(currentValue);
-                    break;
-                case 9:
-                    gene.setLength(Integer.parseInt(currentValue));
-                    break;
-                case 10:
-                    gene.setSubcellularLocations(currentValue);
-                    break;
-                case 11:
-                    gene.setPubmedId(currentValue);
-                    break;
-                case 12:
-                    gene.setGeneNames(currentValue);
-                    break;
-                case 13:
-                    gene.setGeneOntologyId(currentValue);
-                    break;
-                case 14:
-                    gene.setDomains(currentValue);
-                    break;
-	            case 15:
-		            gene.setAccession(currentValue);
-		            break;
-                case 16:
-	                gene.setSequence(currentValue.replaceAll(" ", ""));
-	                break;
-
-            }
-
-//            response = response.substring(index);
-//            if (i != 10) {
-//                response = response.replaceFirst("\t", "");
-//            }
-
-        }
-
-        //pongo como accession el unipot id
-        gene.setAccession(gene.getAnnotationUniprotId());
-
-        return gene;
+        main(args);
     }
 
-	public static void main(String args[]) throws Exception {
-		PredictedGene gene = new PredictedGene();
-		gene.setAnnotationUniprotId("E1XRR5");
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
 
-		PredictedGene gene1 = getUniprotDataFor(gene,false);
-	}
+        if (args.length != 3) {
+            System.out.println("This program expects 3 paramaters: \n"
+                    + "1. Input Multifasta file name of the raw sequence file \n"
+                    + "2. Input TXT file name of selector file (two tab delimited files) \n"
+                    + "3. Outupt Multifasta file name \n");
+        } else {
+
+            File inMultifastaFile = new File(args[0]);
+            File inSelectorFile = new File(args[1]);
+            File outMultifastaFile = new File(args[2]);
+
+            try {
+
+                System.out.println("Initializing buffered writer...");
+                BufferedWriter outBuff = new BufferedWriter(new FileWriter(outMultifastaFile));
+                System.out.println("done!");
+
+                HashMap<String, String> selectorValuesMap = new HashMap<String, String>();
+                HashSet<String> fastaIds = new HashSet<String>();
+
+                System.out.println("Reading selector file...");
+                BufferedReader reader = new BufferedReader(new FileReader(inSelectorFile));
+                String line = null;
+                while ((line = reader.readLine()) != null) {
+                    String[] columns = line.split("\t");
+                    selectorValuesMap.put(columns[0].trim(), columns[1].trim());
+                    fastaIds.add(columns[0].trim());
+                }
+                reader.close();
+
+                System.out.println("done!");
+
+                System.out.println("Reading multifasta input file...");
+
+                reader = new BufferedReader(new FileReader(inMultifastaFile));
+                line = reader.readLine();
+
+                while (line != null) {
+
+                    if (line.charAt(0) == '>') {
+
+                        String header = line;
+                        boolean included = false;
+                        String currentID = "";
+
+                        for (String fastaId : fastaIds) {
+
+                            if (line.indexOf(fastaId) >= 0) {
+                                //This fasta elem must be included in the output                                
+                                included = true;
+                                currentID = fastaId;
+                                break;
+                            }
+                        }
+
+
+                        if (included) {
+
+                            String seq = "";
+                            line = reader.readLine();
+                            //System.out.println("line = " + line);
+                            while (! (line.charAt(0) == '>')) {
+                                seq += line;
+                                line = reader.readLine();
+                                if(line == null){
+                                    //This is when we already are at the end of the file
+                                    break;
+                                }
+                            }
+
+                            seq = seq.toUpperCase();
+
+                            if (selectorValuesMap.get(currentID).equals(REVERSED_ST)) {
+                                
+                                seq = SeqUtil.getComplementaryInverted(seq).toUpperCase();
+                                
+                            }
+
+                            System.out.println("writing header for " + currentID);
+                            outBuff.write(header + "\n");
+
+                            //---writing sequence----
+                            FastaUtil.writeSequenceToFileInFastaFormat(seq, SEQUENCE_LINE_LENGTH, outBuff);
+                            
+                            //Escribir las lineas de la sub-secuencia
+//                            for (int counter = 0; counter < seq.length(); counter += SEQUENCE_LINE_LENGTH) {
+//                                if (counter + SEQUENCE_LINE_LENGTH > seq.length()) {
+//                                    outBuff.write(seq.substring(counter, seq.length()) + "\n");
+//                                } else {
+//                                    outBuff.write(seq.substring(counter, counter + SEQUENCE_LINE_LENGTH) + "\n");
+//                                }
+//                            }
+                            
+                        }else{
+
+                            //just read lines till I find the next header
+                            boolean keepReading = true;
+                            do{
+                                line = reader.readLine();
+                                if(line == null){
+                                    keepReading = false;
+                                }else if((line.charAt(0) == '>')){
+                                    keepReading = false;
+                                }
+                            }while(keepReading);
+                        }
+                    }
+                }
+
+                reader.close();
+                outBuff.close();
+
+
+                System.out.println("Output file created successfully!! :D");
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
 }
 
 ```
@@ -382,10 +391,10 @@ public class UniprotProteinRetreiver {
 [main\java\com\ohnosequences\util\Entry.java]: ..\Entry.java.md
 [main\java\com\ohnosequences\util\Executable.java]: ..\Executable.java.md
 [main\java\com\ohnosequences\util\ExecuteFromFile.java]: ..\ExecuteFromFile.java.md
-[main\java\com\ohnosequences\util\fasta\FastaSubSeq.java]: ..\fasta\FastaSubSeq.java.md
-[main\java\com\ohnosequences\util\fasta\FastaUtil.java]: ..\fasta\FastaUtil.java.md
-[main\java\com\ohnosequences\util\fasta\MultifastaSelector.java]: ..\fasta\MultifastaSelector.java.md
-[main\java\com\ohnosequences\util\fasta\SearchFastaHeaders.java]: ..\fasta\SearchFastaHeaders.java.md
+[main\java\com\ohnosequences\util\fasta\FastaSubSeq.java]: FastaSubSeq.java.md
+[main\java\com\ohnosequences\util\fasta\FastaUtil.java]: FastaUtil.java.md
+[main\java\com\ohnosequences\util\fasta\MultifastaSelector.java]: MultifastaSelector.java.md
+[main\java\com\ohnosequences\util\fasta\SearchFastaHeaders.java]: SearchFastaHeaders.java.md
 [main\java\com\ohnosequences\util\file\FileUtil.java]: ..\file\FileUtil.java.md
 [main\java\com\ohnosequences\util\file\FnaFileFilter.java]: ..\file\FnaFileFilter.java.md
 [main\java\com\ohnosequences\util\file\GenomeFilesParser.java]: ..\file\GenomeFilesParser.java.md
@@ -405,7 +414,7 @@ public class UniprotProteinRetreiver {
 [main\java\com\ohnosequences\util\security\MD5.java]: ..\security\MD5.java.md
 [main\java\com\ohnosequences\util\seq\SeqUtil.java]: ..\seq\SeqUtil.java.md
 [main\java\com\ohnosequences\util\statistics\StatisticalValues.java]: ..\statistics\StatisticalValues.java.md
-[main\java\com\ohnosequences\util\uniprot\UniprotProteinRetreiver.java]: UniprotProteinRetreiver.java.md
+[main\java\com\ohnosequences\util\uniprot\UniprotProteinRetreiver.java]: ..\uniprot\UniprotProteinRetreiver.java.md
 [main\java\com\ohnosequences\xml\api\interfaces\IAttribute.java]: ..\..\xml\api\interfaces\IAttribute.java.md
 [main\java\com\ohnosequences\xml\api\interfaces\IElement.java]: ..\..\xml\api\interfaces\IElement.java.md
 [main\java\com\ohnosequences\xml\api\interfaces\INameSpace.java]: ..\..\xml\api\interfaces\INameSpace.java.md

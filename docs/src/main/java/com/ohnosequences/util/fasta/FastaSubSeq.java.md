@@ -1,167 +1,193 @@
 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ This program exports a subset of the sequence selected by the contig ID provided by the user that is included in the
+ input `MULTIFASTA` file, building a new `MULTIFASTA` file with the name provided whose contents are exactly the same but
+ the sequence of the selected contig. The sub-sequence is determined by the positions provided and the header of the new
+ `FASTA` entry has the following format:
+ Previous sample header:
+
+ > \>tr|Q2GKU1|Q2GKU1_ANAPZ Anaplasma surface protein P55 (Asp55) OS=Anaplasma phagocytophilum (strain HZ) GN=asp55 PE=4 SV=1
+
+ Updated sample header _(when selecting the fragment 1-100)_
+
+ > \>|Fragment 1 - 100|tr|Q2GKU1|Q2GKU1_ANAPZ Anaplasma surface protein P55 (Asp55) OS=Anaplasma phagocytophilum (strain HZ) GN=asp55 PE=4 SV=1
+
+ The parameters for the program are:
+
+ 1. Input FASTA filename
+ 2. Contig ID
+ 3. Subset initial position _(inclusive)_
+ 4. Subset final position _(inclusive)_
+ 5. Output resulting FASTA filename
+
 
 
 ```java
-package com.ohnosequences.util.uniprot;
+package com.ohnosequences.util.fasta;
 
-import com.ohnosequences.xml.model.PredictedGene;
 
+import com.ohnosequences.util.Executable;
+
+import java.io.*;
 import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.ResponseHandler;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.BasicResponseHandler;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
-
-/**
- *
- * @author ppareja
- */
-public class UniprotProteinRetreiver {
-
-    public static String URL_UNIPROT = "http://www.uniprot.org/uniprot/";
-
-    public static PredictedGene getUniprotDataFor(PredictedGene gene, boolean withSequence) throws Exception {
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
-        String columnsParameter = "protein names,organism,comment(FUNCTION),ec,interpro,go,pathway,families,keywords,length,comment(subcellular location),citation,genes,go-id,domains,id";
-        if(withSequence){
-            columnsParameter += ",sequence";
+public class FastaSubSeq implements Executable {
+
+    public static final int SEQUENCE_LINE_LEGTH = 60;
+
+    @Override
+    public void execute(ArrayList<String> array) {
+        String[] args = new String[array.size()];
+        for (int i = 0; i < array.size(); i++) {
+            args[i] = array.get(i);
         }
-
-        HttpPost post = new HttpPost(URL_UNIPROT);
-        List<NameValuePair> formparams = new ArrayList<NameValuePair>();
-        formparams.add(new BasicNameValuePair("query", "accession:" + gene.getAnnotationUniprotId()));
-        formparams.add(new BasicNameValuePair("format", "tab"));
-        formparams.add(new BasicNameValuePair("columns", columnsParameter));
-        UrlEncodedFormEntity entity = new UrlEncodedFormEntity(formparams, "UTF-8");
-        post.setEntity(entity);
-
-        // execute the POST
-        String response = null;
-        HttpClient client = new DefaultHttpClient();
-        do {
-            System.out.println("Performing POST request...");
-            
-            ResponseHandler<String> responseHandler = new BasicResponseHandler();
-            String responseSt = client.execute(post, responseHandler);
-
-            String respNoHeader = responseSt.split("\n")[1];
-            
-            if (respNoHeader.isEmpty()) {
-                System.out.println("There was no response, trying again....");
-            }else{
-                response = respNoHeader;
-            }
-        } while (response == null);
-
-
-        int maxI = 16;
-        if(withSequence){
-            maxI = 17;
-        }
-
-        String[] columns = response.split("\t");
-
-	    //System.out.println(response);
-
-
-        for (int i = 0; i < maxI; i++) {
-            String currentValue = "";
-//            int index = response.indexOf("\t");
-//            if (i < 11) {
-//                currentValue = response.substring(0, index);
-//            } else {
-//                currentValue = response.replaceFirst("\t", "");
-//            }
-
-	        //System.out.println(i + ": '" + columns[i] + "'");
-
-            currentValue = columns[i];
-
-            switch (i) {
-                case 0:
-                    gene.setProteinNames(currentValue);
-                    break;
-                case 1:
-                    gene.setOrganism(currentValue);
-                    break;
-                case 2:
-                    gene.setCommentFunction(currentValue);
-                    break;
-                case 3:
-                    gene.setEcNumbers(currentValue);
-                    break;
-                case 4:
-                    gene.setInterpro(currentValue);
-                    break;
-                case 5:
-                    gene.setGeneOntology(currentValue);
-                    break;
-                case 6:
-                    gene.setPathway(currentValue);
-                    break;
-                case 7:
-                    gene.setProteinFamily(currentValue);
-                    break;
-                case 8:
-                    gene.setKeywords(currentValue);
-                    break;
-                case 9:
-                    gene.setLength(Integer.parseInt(currentValue));
-                    break;
-                case 10:
-                    gene.setSubcellularLocations(currentValue);
-                    break;
-                case 11:
-                    gene.setPubmedId(currentValue);
-                    break;
-                case 12:
-                    gene.setGeneNames(currentValue);
-                    break;
-                case 13:
-                    gene.setGeneOntologyId(currentValue);
-                    break;
-                case 14:
-                    gene.setDomains(currentValue);
-                    break;
-	            case 15:
-		            gene.setAccession(currentValue);
-		            break;
-                case 16:
-	                gene.setSequence(currentValue.replaceAll(" ", ""));
-	                break;
-
-            }
-
-//            response = response.substring(index);
-//            if (i != 10) {
-//                response = response.replaceFirst("\t", "");
-//            }
-
-        }
-
-        //pongo como accession el unipot id
-        gene.setAccession(gene.getAnnotationUniprotId());
-
-        return gene;
+        main(args);
     }
 
-	public static void main(String args[]) throws Exception {
-		PredictedGene gene = new PredictedGene();
-		gene.setAnnotationUniprotId("E1XRR5");
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
 
-		PredictedGene gene1 = getUniprotDataFor(gene,false);
-	}
+        if (args.length != 6) {
+            System.out.println("This program expects the following parameters: \n"
+                    + "1. Input FASTA filename \n"
+                    + "2. Contig ID \n"
+                    + "3. Subset initial position (inclusive) \n"
+                    + "4. Subset final position (inclusive) \n"
+                    + "5. Output resulting FASTA filename \n"
+                    + "6. Include only the selected Contig in the output file (true/false)");
+        } else {
+
+            String inFileString = args[0];
+            String outFileString = args[4];
+            String contigID = args[1];
+            boolean includeOnlySelectedContig = Boolean.parseBoolean(args[5]);
+
+            boolean wrongNumberFormat = false;
+            int startPosition = 0;
+            int endPosition = 0;
+
+            try {
+
+                startPosition = Integer.parseInt(args[2]);
+                endPosition = Integer.parseInt(args[3]);
+
+            } catch (NumberFormatException ex) {
+                System.out.println("The positions for the subset do not have a correct number format");
+                ex.printStackTrace();
+                wrongNumberFormat = true;
+            }
+
+            if (!wrongNumberFormat) {
+                BufferedReader reader = null;
+                try {
+
+                    //We're substracting one to the initial index since the start position from the user's perspective
+                    // is equal to 1
+                    startPosition--;
+                    // The end position is not changed since the String method substr() is exclusive for the final position
+
+                    if (startPosition > endPosition) {
+                        System.out.println("Initial position cannot be greater than final position");
+                        System.exit(-1);
+                    }else{
+
+                        File inFile;
+                        File outFile;
+                        inFile = new File(inFileString);
+                        reader = new BufferedReader(new FileReader(inFile));
+
+                        outFile = new File(outFileString);
+                        FileWriter fileWriter = new FileWriter(outFile);
+                        BufferedWriter writer = new BufferedWriter(fileWriter);
+
+                        String line;
+                        StringBuilder seqBuilder = new StringBuilder();
+                        String header = null;
+                        boolean contigFound = false;
+                        while ((line = reader.readLine()) != null) {
+
+                            if(line.startsWith(">")){
+
+                                if(contigFound){
+                                    //---we already finished reading the sequence we're interested in----
+                                    contigFound = false;
+                                    if (endPosition > seqBuilder.length()) {
+                                        System.out.println("The final position provided is greather than sequence length");
+                                        throw new Exception("Wrong end position");
+                                    } else {
+
+                                        String subSeq = seqBuilder.substring(startPosition, endPosition);
+                                        String newHeader = ">|Fragment " + (startPosition + 1) + " - " + endPosition + "|" + header.substring(1) + "\n";
+
+                                        //Writing the new header
+                                        writer.write(newHeader);
+
+                                        //writing sequences
+                                        FastaUtil.writeSequenceToFileInFastaFormat(subSeq, SEQUENCE_LINE_LEGTH, writer);
+                                    }
+                                }
+
+                                String tempContigID = line.substring(1).trim();
+                                if(tempContigID.equals(contigID)){
+                                    contigFound = true;
+                                    header = line;
+                                }
+
+                            }else{
+                                if(contigFound){
+                                    seqBuilder.append(line.trim());
+                                }
+                            }
+
+                            if(!contigFound){
+                                if(!includeOnlySelectedContig){
+                                    writer.write(line + "\n");
+                                }
+                            }
+
+                        }
+
+                        if(contigFound){
+                            if (endPosition > seqBuilder.length()) {
+                                System.out.println("The final position provided is greather than sequence length");
+                                throw new Exception("Wrong end position");
+                            } else {
+
+                                String subSeq = seqBuilder.substring(startPosition, endPosition);
+                                String newHeader = ">|Fragment " + (startPosition + 1) + " - " + endPosition + "|" + header.substring(1) + "\n";
+
+                                //Writing the new header
+                                writer.write(newHeader);
+
+                                //writing sequences
+                                FastaUtil.writeSequenceToFileInFastaFormat(subSeq, SEQUENCE_LINE_LEGTH, writer);
+                            }
+                        }
+
+                        System.out.println("Closing readers and writers...");
+                        reader.close();
+                        writer.close();
+                        System.out.println("Done!");
+
+                        System.out.println("Fasta file created with the name: " + outFileString);
+
+                    }
+
+
+                } catch (Exception ex) {
+                    Logger.getLogger(FastaSubSeq.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
+                }
+            }
+
+
+        }
+    }
+
 }
-
 ```
 
 
@@ -382,10 +408,10 @@ public class UniprotProteinRetreiver {
 [main\java\com\ohnosequences\util\Entry.java]: ..\Entry.java.md
 [main\java\com\ohnosequences\util\Executable.java]: ..\Executable.java.md
 [main\java\com\ohnosequences\util\ExecuteFromFile.java]: ..\ExecuteFromFile.java.md
-[main\java\com\ohnosequences\util\fasta\FastaSubSeq.java]: ..\fasta\FastaSubSeq.java.md
-[main\java\com\ohnosequences\util\fasta\FastaUtil.java]: ..\fasta\FastaUtil.java.md
-[main\java\com\ohnosequences\util\fasta\MultifastaSelector.java]: ..\fasta\MultifastaSelector.java.md
-[main\java\com\ohnosequences\util\fasta\SearchFastaHeaders.java]: ..\fasta\SearchFastaHeaders.java.md
+[main\java\com\ohnosequences\util\fasta\FastaSubSeq.java]: FastaSubSeq.java.md
+[main\java\com\ohnosequences\util\fasta\FastaUtil.java]: FastaUtil.java.md
+[main\java\com\ohnosequences\util\fasta\MultifastaSelector.java]: MultifastaSelector.java.md
+[main\java\com\ohnosequences\util\fasta\SearchFastaHeaders.java]: SearchFastaHeaders.java.md
 [main\java\com\ohnosequences\util\file\FileUtil.java]: ..\file\FileUtil.java.md
 [main\java\com\ohnosequences\util\file\FnaFileFilter.java]: ..\file\FnaFileFilter.java.md
 [main\java\com\ohnosequences\util\file\GenomeFilesParser.java]: ..\file\GenomeFilesParser.java.md
@@ -405,7 +431,7 @@ public class UniprotProteinRetreiver {
 [main\java\com\ohnosequences\util\security\MD5.java]: ..\security\MD5.java.md
 [main\java\com\ohnosequences\util\seq\SeqUtil.java]: ..\seq\SeqUtil.java.md
 [main\java\com\ohnosequences\util\statistics\StatisticalValues.java]: ..\statistics\StatisticalValues.java.md
-[main\java\com\ohnosequences\util\uniprot\UniprotProteinRetreiver.java]: UniprotProteinRetreiver.java.md
+[main\java\com\ohnosequences\util\uniprot\UniprotProteinRetreiver.java]: ..\uniprot\UniprotProteinRetreiver.java.md
 [main\java\com\ohnosequences\xml\api\interfaces\IAttribute.java]: ..\..\xml\api\interfaces\IAttribute.java.md
 [main\java\com\ohnosequences\xml\api\interfaces\IElement.java]: ..\..\xml\api\interfaces\IElement.java.md
 [main\java\com\ohnosequences\xml\api\interfaces\INameSpace.java]: ..\..\xml\api\interfaces\INameSpace.java.md

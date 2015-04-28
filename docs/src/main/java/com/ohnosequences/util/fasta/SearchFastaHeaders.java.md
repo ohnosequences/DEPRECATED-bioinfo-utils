@@ -1,167 +1,96 @@
 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ This program looks for the text provided in the headers of the input FASTA file, all entries for which the value provided
+ is found are included in the output FASTA file.
+ The parameters for the program are:
+
+ 1. Input FASTA file name
+ 2. Output FASTA file name
+ 3. String to look up for
+
 
 
 ```java
-package com.ohnosequences.util.uniprot;
+package com.ohnosequences.util.fasta;
 
-import com.ohnosequences.xml.model.PredictedGene;
+import com.ohnosequences.util.Executable;
 
+import java.io.*;
 import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.ResponseHandler;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.BasicResponseHandler;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
-
-/**
- *
- * @author ppareja
- */
-public class UniprotProteinRetreiver {
-
-    public static String URL_UNIPROT = "http://www.uniprot.org/uniprot/";
-
-    public static PredictedGene getUniprotDataFor(PredictedGene gene, boolean withSequence) throws Exception {
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
-        String columnsParameter = "protein names,organism,comment(FUNCTION),ec,interpro,go,pathway,families,keywords,length,comment(subcellular location),citation,genes,go-id,domains,id";
-        if(withSequence){
-            columnsParameter += ",sequence";
+public class SearchFastaHeaders implements Executable {
+
+    @Override
+    public void execute(ArrayList<String> array) {
+        String[] args = new String[array.size()];
+        for (int i = 0; i < array.size(); i++) {
+            args[i] = array.get(i);
         }
-
-        HttpPost post = new HttpPost(URL_UNIPROT);
-        List<NameValuePair> formparams = new ArrayList<NameValuePair>();
-        formparams.add(new BasicNameValuePair("query", "accession:" + gene.getAnnotationUniprotId()));
-        formparams.add(new BasicNameValuePair("format", "tab"));
-        formparams.add(new BasicNameValuePair("columns", columnsParameter));
-        UrlEncodedFormEntity entity = new UrlEncodedFormEntity(formparams, "UTF-8");
-        post.setEntity(entity);
-
-        // execute the POST
-        String response = null;
-        HttpClient client = new DefaultHttpClient();
-        do {
-            System.out.println("Performing POST request...");
-            
-            ResponseHandler<String> responseHandler = new BasicResponseHandler();
-            String responseSt = client.execute(post, responseHandler);
-
-            String respNoHeader = responseSt.split("\n")[1];
-            
-            if (respNoHeader.isEmpty()) {
-                System.out.println("There was no response, trying again....");
-            }else{
-                response = respNoHeader;
-            }
-        } while (response == null);
-
-
-        int maxI = 16;
-        if(withSequence){
-            maxI = 17;
-        }
-
-        String[] columns = response.split("\t");
-
-	    //System.out.println(response);
-
-
-        for (int i = 0; i < maxI; i++) {
-            String currentValue = "";
-//            int index = response.indexOf("\t");
-//            if (i < 11) {
-//                currentValue = response.substring(0, index);
-//            } else {
-//                currentValue = response.replaceFirst("\t", "");
-//            }
-
-	        //System.out.println(i + ": '" + columns[i] + "'");
-
-            currentValue = columns[i];
-
-            switch (i) {
-                case 0:
-                    gene.setProteinNames(currentValue);
-                    break;
-                case 1:
-                    gene.setOrganism(currentValue);
-                    break;
-                case 2:
-                    gene.setCommentFunction(currentValue);
-                    break;
-                case 3:
-                    gene.setEcNumbers(currentValue);
-                    break;
-                case 4:
-                    gene.setInterpro(currentValue);
-                    break;
-                case 5:
-                    gene.setGeneOntology(currentValue);
-                    break;
-                case 6:
-                    gene.setPathway(currentValue);
-                    break;
-                case 7:
-                    gene.setProteinFamily(currentValue);
-                    break;
-                case 8:
-                    gene.setKeywords(currentValue);
-                    break;
-                case 9:
-                    gene.setLength(Integer.parseInt(currentValue));
-                    break;
-                case 10:
-                    gene.setSubcellularLocations(currentValue);
-                    break;
-                case 11:
-                    gene.setPubmedId(currentValue);
-                    break;
-                case 12:
-                    gene.setGeneNames(currentValue);
-                    break;
-                case 13:
-                    gene.setGeneOntologyId(currentValue);
-                    break;
-                case 14:
-                    gene.setDomains(currentValue);
-                    break;
-	            case 15:
-		            gene.setAccession(currentValue);
-		            break;
-                case 16:
-	                gene.setSequence(currentValue.replaceAll(" ", ""));
-	                break;
-
-            }
-
-//            response = response.substring(index);
-//            if (i != 10) {
-//                response = response.replaceFirst("\t", "");
-//            }
-
-        }
-
-        //pongo como accession el unipot id
-        gene.setAccession(gene.getAnnotationUniprotId());
-
-        return gene;
+        main(args);
     }
 
-	public static void main(String args[]) throws Exception {
-		PredictedGene gene = new PredictedGene();
-		gene.setAnnotationUniprotId("E1XRR5");
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
 
-		PredictedGene gene1 = getUniprotDataFor(gene,false);
-	}
+        if (args.length != 3) {
+            System.out.println("This program expects the followgin parameters: \n"
+                    + "1. Input FASTA file name \n"
+                    + "2. Output FASTA file name \n"
+                    + "3. String to look up for");
+        } else {
+
+            String inFileString = args[0];
+            String outFileString = args[1];
+            String valueToLookUp = args[2];
+
+            try {
+
+                File inFile;
+                File outFile;
+                inFile = new File(inFileString);
+                BufferedReader reader = new BufferedReader(new FileReader(inFile));
+
+                outFile = new File(outFileString);
+                FileWriter fileWriter = new FileWriter(outFile);
+                BufferedWriter writer = new BufferedWriter(fileWriter);
+
+                String line;
+                boolean writeSeq = false;
+
+                while ((line = reader.readLine()) != null) {
+
+                    if(line.startsWith(">")) {
+                        if(line.substring(1).indexOf(valueToLookUp) >= 0){
+                            writeSeq = true;
+                            writer.write(line + "\n");
+                        }else{
+                            writeSeq = false;
+                        }
+                    }else{
+                        if(writeSeq){
+                            writer.write(line + "\n");
+                        }
+                    }
+                }
+
+                System.out.println("Closing readers and writers...");
+                reader.close();
+                writer.close();
+                System.out.println("Done!");
+                System.out.println("Fasta file created with the name: " + outFileString);
+
+            } catch (Exception ex) {
+                Logger.getLogger(SearchFastaHeaders.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
+            }
+
+        }
+    }
+
 }
-
 ```
 
 
@@ -382,10 +311,10 @@ public class UniprotProteinRetreiver {
 [main\java\com\ohnosequences\util\Entry.java]: ..\Entry.java.md
 [main\java\com\ohnosequences\util\Executable.java]: ..\Executable.java.md
 [main\java\com\ohnosequences\util\ExecuteFromFile.java]: ..\ExecuteFromFile.java.md
-[main\java\com\ohnosequences\util\fasta\FastaSubSeq.java]: ..\fasta\FastaSubSeq.java.md
-[main\java\com\ohnosequences\util\fasta\FastaUtil.java]: ..\fasta\FastaUtil.java.md
-[main\java\com\ohnosequences\util\fasta\MultifastaSelector.java]: ..\fasta\MultifastaSelector.java.md
-[main\java\com\ohnosequences\util\fasta\SearchFastaHeaders.java]: ..\fasta\SearchFastaHeaders.java.md
+[main\java\com\ohnosequences\util\fasta\FastaSubSeq.java]: FastaSubSeq.java.md
+[main\java\com\ohnosequences\util\fasta\FastaUtil.java]: FastaUtil.java.md
+[main\java\com\ohnosequences\util\fasta\MultifastaSelector.java]: MultifastaSelector.java.md
+[main\java\com\ohnosequences\util\fasta\SearchFastaHeaders.java]: SearchFastaHeaders.java.md
 [main\java\com\ohnosequences\util\file\FileUtil.java]: ..\file\FileUtil.java.md
 [main\java\com\ohnosequences\util\file\FnaFileFilter.java]: ..\file\FnaFileFilter.java.md
 [main\java\com\ohnosequences\util\file\GenomeFilesParser.java]: ..\file\GenomeFilesParser.java.md
@@ -405,7 +334,7 @@ public class UniprotProteinRetreiver {
 [main\java\com\ohnosequences\util\security\MD5.java]: ..\security\MD5.java.md
 [main\java\com\ohnosequences\util\seq\SeqUtil.java]: ..\seq\SeqUtil.java.md
 [main\java\com\ohnosequences\util\statistics\StatisticalValues.java]: ..\statistics\StatisticalValues.java.md
-[main\java\com\ohnosequences\util\uniprot\UniprotProteinRetreiver.java]: UniprotProteinRetreiver.java.md
+[main\java\com\ohnosequences\util\uniprot\UniprotProteinRetreiver.java]: ..\uniprot\UniprotProteinRetreiver.java.md
 [main\java\com\ohnosequences\xml\api\interfaces\IAttribute.java]: ..\..\xml\api\interfaces\IAttribute.java.md
 [main\java\com\ohnosequences\xml\api\interfaces\IElement.java]: ..\..\xml\api\interfaces\IElement.java.md
 [main\java\com\ohnosequences\xml\api\interfaces\INameSpace.java]: ..\..\xml\api\interfaces\INameSpace.java.md
