@@ -1,3 +1,4 @@
+import AssemblyKeys._
 
 Nice.javaProject
 
@@ -10,7 +11,6 @@ name := "bioinfo-util"
 description := "Bioinformatics utility classes"
 
 bucketSuffix := "era7.com"
-
 
 libraryDependencies ++= Seq(
   "org.neo4j" % "neo4j-kernel" % "1.9.3",
@@ -26,3 +26,8 @@ libraryDependencies ++= Seq(
 dependencyOverrides ++= Set(
   "commons-codec" % "commons-codec" % "1.6"
 )
+
+// fat jar assembly settings
+mainClass in assembly := Some("com.bio4j.titan.programs.ImportTitanDB")
+
+assemblyOption in assembly ~= { _.copy(includeScala = false) }
