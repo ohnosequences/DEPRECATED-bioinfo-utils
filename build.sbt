@@ -33,3 +33,12 @@ dependencyOverrides ++= Set(
 mainClass in assembly := Some("com.ohnosequences.BioinfoUtil")
 
 assemblyOption in assembly ~= { _.copy(includeScala = false) }
+
+mergeStrategy in assembly ~= { old => {
+  case PathList("META-INF", "CHANGES.txt")                      => MergeStrategy.rename
+  case PathList("META-INF", "LICENSES.txt")                     => MergeStrategy.rename
+  case "log4j.properties"                                       => MergeStrategy.filterDistinctLines
+  case PathList("org", "apache", "commons", "collections", _*)  => MergeStrategy.first
+  case x                                                        => old(x)
+}
+}
