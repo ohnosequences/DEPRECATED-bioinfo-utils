@@ -4,6 +4,8 @@ Nice.javaProject
 
 javaVersion := "1.8"
 
+fatArtifactSettings
+
 organization := "ohnosequences"
 
 name := "bioinfo-util"
