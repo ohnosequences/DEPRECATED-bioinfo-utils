@@ -28,6 +28,6 @@ dependencyOverrides ++= Set(
 )
 
 // fat jar assembly settings
-mainClass in assembly := Some("com.bio4j.titan.programs.ImportTitanDB")
+mainClass in assembly := Some("com.ohnosequences.BioinfoUtil")
 
 assemblyOption in assembly ~= { _.copy(includeScala = false) }
