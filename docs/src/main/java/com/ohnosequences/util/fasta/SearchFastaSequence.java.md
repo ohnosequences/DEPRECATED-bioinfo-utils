@@ -1,30 +1,117 @@
 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ This program looks for the text provided in the sequences included in the input FASTA file, all entries for which the value provided
+ is found are included in the output FASTA file.
+ The parameters for the program are:
+
+ 1. Input FASTA file name
+ 2. Output FASTA file name
+ 3. String to look up for
+
 
 
 ```java
-package com.ohnosequences.util.file;
+package com.ohnosequences.util.fasta;
 
-import java.io.File;
-import java.io.FilenameFilter;
 
-/**
- *
- * @author ppareja
- */
-public class PttFileFilter implements FilenameFilter {
+
+import com.ohnosequences.util.Executable;
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+
+public class SearchFastaSequence implements Executable {
+
+    public static final int FASTA_LINE_LENGTH = 60;
 
     @Override
-    public boolean accept(File dir, String name) {
-        if (name.toLowerCase().endsWith("ptt")) {
-            return true;
-        }else{
-            return false;
+    public void execute(ArrayList<String> array) {
+        String[] args = new String[array.size()];
+        for (int i = 0; i < array.size(); i++) {
+            args[i] = array.get(i);
+        }
+        main(args);
+    }
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+
+
+        if (args.length != 3) {
+            System.out.println("This program expects the following parameters: \n"
+                    + "1. Input FASTA file name \n"
+                    + "2. Output FASTA file name \n"
+                    + "3. String to look up for");
+        } else {
+
+            String inFileString = args[0];
+            String outFileString = args[1];
+            String valueToLookUp = args[2];
+
+            try {
+
+                File inFile;
+                File outFile;
+                inFile = new File(inFileString);
+                BufferedReader reader = new BufferedReader(new FileReader(inFile));
+
+                outFile = new File(outFileString);
+                FileWriter fileWriter = new FileWriter(outFile);
+                BufferedWriter writer = new BufferedWriter(fileWriter);
+
+                String line;
+                String lastID = null;
+                StringBuilder stBuilder = new StringBuilder();
+                boolean writeEntry = false;
+
+
+                while ((line = reader.readLine()) != null) {
+
+                    if(line.startsWith(">")) {
+                        if(lastID != null){
+                            String sequence = stBuilder.toString();
+                            int index = sequence.toLowerCase().indexOf(valueToLookUp.toLowerCase());
+                            if(index >= 0){
+                                writer.write(lastID + "\n");
+                                writer.write(FastaUtil.formatSequenceWithFastaFormat(sequence, FASTA_LINE_LENGTH) + "\n");
+                            }
+                            stBuilder.delete(0, stBuilder.length());
+                        }
+                        lastID = line;
+
+                    }else{
+                        stBuilder.append(line.trim());
+                    }
+                }
+
+                //-------------we still have to check the last sequence-------------------------
+                if(lastID != null){
+                    String sequence = stBuilder.toString();
+                    int index = sequence.toLowerCase().indexOf(valueToLookUp.toLowerCase());
+                    if(index >= 0){
+                        writer.write(lastID + "\n");
+                        writer.write(FastaUtil.formatSequenceWithFastaFormat(sequence, FASTA_LINE_LENGTH) + "\n");
+                    }
+                }
+
+                System.out.println("Closing readers and writers...");
+                reader.close();
+                writer.close();
+                System.out.println("Done!");
+                System.out.println("Fasta file created with the name: " + outFileString);
+
+            } catch (Exception ex) {
+                Logger.getLogger(SearchFastaSequence.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
+            }
+
         }
     }
-}
 
+}
 ```
 
 
@@ -246,16 +333,16 @@ public class PttFileFilter implements FilenameFilter {
 [main\java\com\ohnosequences\util\Entry.java]: ..\Entry.java.md
 [main\java\com\ohnosequences\util\Executable.java]: ..\Executable.java.md
 [main\java\com\ohnosequences\util\ExecuteFromFile.java]: ..\ExecuteFromFile.java.md
-[main\java\com\ohnosequences\util\fasta\FastaSubSeq.java]: ..\fasta\FastaSubSeq.java.md
-[main\java\com\ohnosequences\util\fasta\FastaUtil.java]: ..\fasta\FastaUtil.java.md
-[main\java\com\ohnosequences\util\fasta\MultifastaSelector.java]: ..\fasta\MultifastaSelector.java.md
-[main\java\com\ohnosequences\util\fasta\SearchFastaHeaders.java]: ..\fasta\SearchFastaHeaders.java.md
-[main\java\com\ohnosequences\util\fasta\SearchFastaSequence.java]: ..\fasta\SearchFastaSequence.java.md
-[main\java\com\ohnosequences\util\file\FileUtil.java]: FileUtil.java.md
-[main\java\com\ohnosequences\util\file\FnaFileFilter.java]: FnaFileFilter.java.md
-[main\java\com\ohnosequences\util\file\GenomeFilesParser.java]: GenomeFilesParser.java.md
-[main\java\com\ohnosequences\util\file\PttFileFilter.java]: PttFileFilter.java.md
-[main\java\com\ohnosequences\util\file\RntFileFilter.java]: RntFileFilter.java.md
+[main\java\com\ohnosequences\util\fasta\FastaSubSeq.java]: FastaSubSeq.java.md
+[main\java\com\ohnosequences\util\fasta\FastaUtil.java]: FastaUtil.java.md
+[main\java\com\ohnosequences\util\fasta\MultifastaSelector.java]: MultifastaSelector.java.md
+[main\java\com\ohnosequences\util\fasta\SearchFastaHeaders.java]: SearchFastaHeaders.java.md
+[main\java\com\ohnosequences\util\fasta\SearchFastaSequence.java]: SearchFastaSequence.java.md
+[main\java\com\ohnosequences\util\file\FileUtil.java]: ..\file\FileUtil.java.md
+[main\java\com\ohnosequences\util\file\FnaFileFilter.java]: ..\file\FnaFileFilter.java.md
+[main\java\com\ohnosequences\util\file\GenomeFilesParser.java]: ..\file\GenomeFilesParser.java.md
+[main\java\com\ohnosequences\util\file\PttFileFilter.java]: ..\file\PttFileFilter.java.md
+[main\java\com\ohnosequences\util\file\RntFileFilter.java]: ..\file\RntFileFilter.java.md
 [main\java\com\ohnosequences\util\genbank\GBCommon.java]: ..\genbank\GBCommon.java.md
 [main\java\com\ohnosequences\util\gephi\GephiExporter.java]: ..\gephi\GephiExporter.java.md
 [main\java\com\ohnosequences\util\gephi\GexfToDotExporter.java]: ..\gephi\GexfToDotExporter.java.md

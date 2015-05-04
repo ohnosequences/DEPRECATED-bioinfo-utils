@@ -1,16 +1,15 @@
 /*
- * Copyright (C) 2010-2012  "Oh no sequences!"
- *
- * This is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>
+This program filters a MULTIFASTA file based on the ids provided by means of the TSV file.
+The result of that filtering is exported to a new MULTIFASTA file.
+There also exists the possibility of specifying that the sequence of a selected entry must be exported in an 'reversed' form.
+In order to do that, the letter 'R' should be specified on the second column of the TSV file besides the id on entry that must be included with its sequence reversed.
+
+The parameters for the program are:
+
+1. Input Multifasta file name of the raw sequence file
+2. Input TSV file name of selector file (two tab delimited files) \n"
+3. Outupt Multifasta file name
+
  */
 package com.ohnosequences.util.fasta;
 
@@ -48,7 +47,7 @@ public class MultifastaSelector implements Executable{
         if (args.length != 3) {
             System.out.println("This program expects 3 paramaters: \n"
                     + "1. Input Multifasta file name of the raw sequence file \n"
-                    + "2. Input TXT file name of selector file (two tab delimited files) \n"
+                    + "2. Input TSV file name of selector file (two tab delimited file) \n"
                     + "3. Outupt Multifasta file name \n");
         } else {
 

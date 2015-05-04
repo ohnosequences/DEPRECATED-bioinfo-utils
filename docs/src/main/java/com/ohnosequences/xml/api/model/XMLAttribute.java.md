@@ -148,6 +148,7 @@ public class XMLAttribute implements IAttribute {
               + [FastaUtil.java][main\java\com\ohnosequences\util\fasta\FastaUtil.java]
               + [MultifastaSelector.java][main\java\com\ohnosequences\util\fasta\MultifastaSelector.java]
               + [SearchFastaHeaders.java][main\java\com\ohnosequences\util\fasta\SearchFastaHeaders.java]
+              + [SearchFastaSequence.java][main\java\com\ohnosequences\util\fasta\SearchFastaSequence.java]
             + file
               + [FileUtil.java][main\java\com\ohnosequences\util\file\FileUtil.java]
               + [FnaFileFilter.java][main\java\com\ohnosequences\util\file\FnaFileFilter.java]
@@ -332,6 +333,7 @@ public class XMLAttribute implements IAttribute {
 [main\java\com\ohnosequences\util\fasta\FastaUtil.java]: ..\..\..\util\fasta\FastaUtil.java.md
 [main\java\com\ohnosequences\util\fasta\MultifastaSelector.java]: ..\..\..\util\fasta\MultifastaSelector.java.md
 [main\java\com\ohnosequences\util\fasta\SearchFastaHeaders.java]: ..\..\..\util\fasta\SearchFastaHeaders.java.md
+[main\java\com\ohnosequences\util\fasta\SearchFastaSequence.java]: ..\..\..\util\fasta\SearchFastaSequence.java.md
 [main\java\com\ohnosequences\util\file\FileUtil.java]: ..\..\..\util\file\FileUtil.java.md
 [main\java\com\ohnosequences\util\file\FnaFileFilter.java]: ..\..\..\util\file\FnaFileFilter.java.md
 [main\java\com\ohnosequences\util\file\GenomeFilesParser.java]: ..\..\..\util\file\GenomeFilesParser.java.md

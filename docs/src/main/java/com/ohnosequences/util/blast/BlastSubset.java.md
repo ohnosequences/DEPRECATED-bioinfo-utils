@@ -115,6 +115,7 @@ public class BlastSubset {
               + [FastaUtil.java][main\java\com\ohnosequences\util\fasta\FastaUtil.java]
               + [MultifastaSelector.java][main\java\com\ohnosequences\util\fasta\MultifastaSelector.java]
               + [SearchFastaHeaders.java][main\java\com\ohnosequences\util\fasta\SearchFastaHeaders.java]
+              + [SearchFastaSequence.java][main\java\com\ohnosequences\util\fasta\SearchFastaSequence.java]
             + file
               + [FileUtil.java][main\java\com\ohnosequences\util\file\FileUtil.java]
               + [FnaFileFilter.java][main\java\com\ohnosequences\util\file\FnaFileFilter.java]
@@ -299,6 +300,7 @@ public class BlastSubset {
 [main\java\com\ohnosequences\util\fasta\FastaUtil.java]: ..\fasta\FastaUtil.java.md
 [main\java\com\ohnosequences\util\fasta\MultifastaSelector.java]: ..\fasta\MultifastaSelector.java.md
 [main\java\com\ohnosequences\util\fasta\SearchFastaHeaders.java]: ..\fasta\SearchFastaHeaders.java.md
+[main\java\com\ohnosequences\util\fasta\SearchFastaSequence.java]: ..\fasta\SearchFastaSequence.java.md
 [main\java\com\ohnosequences\util\file\FileUtil.java]: ..\file\FileUtil.java.md
 [main\java\com\ohnosequences\util\file\FnaFileFilter.java]: ..\file\FnaFileFilter.java.md
 [main\java\com\ohnosequences\util\file\GenomeFilesParser.java]: ..\file\GenomeFilesParser.java.md

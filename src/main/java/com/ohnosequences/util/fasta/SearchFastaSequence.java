@@ -104,7 +104,7 @@ public class SearchFastaSequence implements Executable {
                 System.out.println("Fasta file created with the name: " + outFileString);
 
             } catch (Exception ex) {
-                Logger.getLogger(FastaSubSet.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
+                Logger.getLogger(SearchFastaSequence.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
             }
 
         }
