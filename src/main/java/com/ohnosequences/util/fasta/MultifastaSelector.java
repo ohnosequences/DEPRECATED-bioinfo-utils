@@ -7,7 +7,7 @@ In order to do that, the letter 'R' should be specified on the second column of 
 The parameters for the program are:
 
 1. Input Multifasta file name of the raw sequence file
-2. Input TSV file name of selector file (two tab delimited files) \n"
+2. Input TSV file name of selector file (two tab delimited file)"
 3. Outupt Multifasta file name
 
  */
