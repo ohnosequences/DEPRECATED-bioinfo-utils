@@ -1,10 +1,8 @@
 Nice.javaProject
 
-name := "bioinfo-util"
-description := "Bioinformatics utility classes"
-organization := "ohnosequences"
-
-bucketSuffix := "era7.com"
+name          := "bioinfo-util"
+organization  := "ohnosequences"
+description   := "Bioinformatics utility classes"
 
 javaVersion := "1.8"
 
@@ -14,6 +12,7 @@ libraryDependencies ++= Seq(
   "org.jdom"                  % "jdom"         % "2.0.2"
 )
 
+bucketSuffix := "era7.com"
 
 fatArtifactSettings
 mainClass in assembly := Some("com.ohnosequences.BioinfoUtil")
