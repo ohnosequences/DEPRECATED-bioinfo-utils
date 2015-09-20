@@ -7,7 +7,7 @@ description   := "Bioinformatics utility classes"
 javaVersion := "1.8"
 
 libraryDependencies ++= Seq(
-  "org.apache.httpcomponents" % "httpclient"   % "4.5",
+  "org.apache.httpcomponents" % "httpclient"   % "4.5.1",
   "org.apache.commons"        % "commons-math" % "2.2",
   "org.jdom"                  % "jdom"         % "2.0.2"
 )
