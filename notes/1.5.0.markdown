@@ -1,0 +1,9 @@
+* **Removed aws-related code**
+* Removed neo4j and aws-sdk deps
+* Updated minor dependencies versions
+* Added:
+    + `SearchFastaSequences` program
+    + `BioinfoUtil` bundle class
+    + `SearchFastaHeaders` program
+    + `FastaSubSeq` program
+    + `MultifastaSelector`
